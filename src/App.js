@@ -1,14 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MainNavigation } from '@kartverket/geonorge-web-components/MainNavigation';
- import style from './App.module.scss';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+ import NotFound from "./components/routes/notFound";
+
+ import Admin from "./components/routes/admin";
+ import Home from "./components/routes/home";
+ import Layout from "./components/layout"
+
+ import style from "./App.module.scss";
 
 
 function App() {
+  const router = createBrowserRouter([
+    {
+        element: <Layout />,
+        id: "root",
+        children: [
+            {
+                element: <Home />,
+                index: true
+            },
+            {
+                element: <Admin />,
+                path: "admin"
+            },
+            {
+              element: <NotFound />,
+              path: "*"
+          }
+        ]
+    }
+    
+]);
+
   return (
-    <div className={style.kartkatalogen}>
-     <main-navigation environment="dev"></main-navigation>
-      
+    <div className={style.app}>
+    
+      <RouterProvider router={router} />
     </div>
   );
 }
