@@ -4,17 +4,18 @@ import React from "react";
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
 import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
+import DatasetSelector from "../partials/DatasetSelector";
 
-const Admin = () => {
+const DatasetUpload = () => {
     return (
             <div id="main-content">
             <heading-text>
-                <h1 underline="true">Adminsiden</h1>
+                <h2 underline="true">Laste opp data basert på tilganger til datasett</h2>
             </heading-text>
-
-                <p>Siden finnes</p>
+            <DatasetSelector />
+               
             </div>
     );
 };
 
-export default Admin;
+export default DatasetUpload;

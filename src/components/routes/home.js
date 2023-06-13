@@ -4,18 +4,22 @@ import React from "react";
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
 import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
+import  AccessRoles from "../partials/AccessRoles";
 
-const NotFound = () => {
+
+const Home = () => {
     return (
         <content-container>
             <div id="main-content">
                 <heading-text>
-                    <h1>Home</h1>
+                    <h1>Opplastingsklienten </h1>
                 </heading-text>
-                <p>Siden finnes</p>
+
+                <AccessRoles />
+
             </div>
         </content-container>
     );
 };
 
-export default NotFound;
+export default Home;
