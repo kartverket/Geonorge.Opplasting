@@ -4,6 +4,7 @@ import React from "react";
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
 import { ContentContainer, HeadingText, breadcrumbList } from "@kartverket/geonorge-web-components";
+import DatasetUpload from "../routes/datasetUpload";
 
 
 const AdminPage = () => {
@@ -15,6 +16,7 @@ const AdminPage = () => {
                     <h1>Adminsiden </h1>
                 </heading-text>                
             <p><a href="admin/newDataset">Nytt datasett</a></p>
+            <DatasetUpload />
             </div>
         </content-container>
     );

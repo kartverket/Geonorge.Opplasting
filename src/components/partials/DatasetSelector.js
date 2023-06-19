@@ -8,7 +8,7 @@ import { ContentContainer, GnButton, HeadingText, GnSelect } from "@kartverket/g
 const DatasetSelector = () => {
     return (
         <React.Fragment>
-            <heading-text><h2>Dine tilgjengelige datasett</h2></heading-text>
+            <heading-text><h3>Dine tilgjengelige datasett</h3></heading-text>
             <gn-label block="">
                 <label for="block-label-select">Velg datasett</label>
             </gn-label>

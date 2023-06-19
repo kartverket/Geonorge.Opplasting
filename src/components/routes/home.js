@@ -12,7 +12,7 @@ const Home = () => {
         <content-container>
             <div id="main-content">
                 <heading-text>
-                    <h1>Opplastingsklienten </h1>
+                    <h1 underline="true">Opplastingsklienten </h1>
                 </heading-text>
 
                 <AccessRoles />

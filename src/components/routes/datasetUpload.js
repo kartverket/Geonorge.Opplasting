@@ -7,14 +7,9 @@ import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-componen
 import DatasetSelector from "../partials/DatasetSelector";
 
 const DatasetUpload = () => {
-    return (
-            <div id="main-content">
-            <heading-text>
-                <h2 underline="true">Laste opp data basert på tilganger til datasett</h2>
-            </heading-text>
+    return (          
             <DatasetSelector />
                
-            </div>
     );
 };
 
