@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
  import NotFound from "./components/routes/notFound";
@@ -7,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
  import Admin from "./components/routes/admin";
  import Home from "./components/routes/home";
  import Newdataset from "./components/routes/newDataset";
- import DatasetUpload from "./components/routes/datasetUpload";
  import Layout from "./components/layout"
 
  import style from "./App.module.scss";
@@ -31,10 +29,7 @@ function App() {
               element: <Newdataset />,
               path: "admin/newdataset"
             },
-            {
-              element: <DatasetUpload />,
-              path: "datasetUpload"
-          },
+            
             {
               element: <NotFound />,
               path: "*"

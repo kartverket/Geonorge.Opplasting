@@ -4,18 +4,20 @@ import React from "react";
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
 import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
+// eslint-disable-next-line no-unused-vars
+import NewdatasetForm from "../partials/newDatasetForm";
 
-const Admin = () => {
+const Newdataset = () => {
     return (
             <div id="main-content">
             <heading-text>
-                <h1 underline="true">Adminsiden</h1>
+                <h1 underline="true">Skjema for dataset</h1>
             </heading-text>
-            <gn-button></gn-button>
-
-                <p>Siden finnes</p>
+           
+            <NewdatasetForm />
+                
             </div>
     );
 };
 
-export default Admin;
+export default Newdataset;
