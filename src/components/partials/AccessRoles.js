@@ -9,9 +9,9 @@ const AccessRoles = () => {
     return (
         <React.Fragment>
             <heading-text><h2>Velg rolle</h2></heading-text>
-            <gn-button color="primary"><button>Admin</button></gn-button>
-            <gn-button color="primary"><button>Datasetteier</button></gn-button>
-            <gn-button color="primary"><a href="/datasetUpload">Brukeropplaster</a></gn-button>
+            <gn-button color="primary"><a href="/admin">Admin</a></gn-button>
+            <gn-button color="primary"><a href="/owner">Datasetteier</a></gn-button>
+            <gn-button color="primary"><a href="/userpage">Brukeropplaster</a></gn-button>
         </React.Fragment>
     );
 };

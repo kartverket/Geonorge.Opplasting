@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
  import Admin from "./components/routes/admin";
  import Home from "./components/routes/home";
+ import DatasetOwner from "./components/routes/datasetOwner";
+ import UserPage from "./components/routes/userPage";
  import Newdataset from "./components/routes/newDataset";
  import Layout from "./components/layout"
 
@@ -26,8 +28,16 @@ function App() {
                 path: "admin"
             },
             {
+              element: <DatasetOwner />,
+              path: "datasetowner"
+          },
+            {
               element: <Newdataset />,
               path: "admin/newdataset"
+            },
+            {
+              element: <UserPage />,
+              path: "userpage"
             },
             
             {
