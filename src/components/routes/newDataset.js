@@ -5,7 +5,7 @@ import React from "react";
 // eslint-disable-next-line no-unused-vars
 import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
 // eslint-disable-next-line no-unused-vars
-import NewdatasetForm from "../partials/newDatasetForm";
+import NewdatasetForm from "../partials/NewDatasetForm";
 
 const Newdataset = () => {
     return (
