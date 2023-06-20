@@ -1,5 +1,5 @@
 // Dependencies
-import React from "react";
+import React, {Fragment} from "react";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
@@ -8,12 +8,12 @@ import { ContentContainer, HeadingText, breadcrumbList } from "@kartverket/geono
 
 const OrganisationInfo = () => {
     return (
-        <content-container>        
-            <p>Organisasjon navn</p>
-                <p>Antall dataset: 11</p>
-                <p>Sist innlogget: 12.02.2022</p>
-                <p>Orgnr. 123456789</p>                                  
-        </content-container>
+           <Fragment>    
+                <p>Organisasjon navn
+                Antall dataset: 11
+                Sist innlogget: 12.02.2022
+                Orgnr. 123456789</p>                                  
+            </Fragment>
     );
 };
 

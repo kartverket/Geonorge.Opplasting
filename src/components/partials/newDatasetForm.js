@@ -7,7 +7,6 @@ import { ContentContainer, GnButto, GnFieldContainer, GnInput, GnLabel, BodyText
 
 const NewdatasetForm = () => {
     return (
-            <div id="main-content">
                 <content-container><body-text>Fyll inn feltene for å opprette et nytt datasett.</body-text>
                     <gn-field-container block="">
                         <gn-label block=""><label for="tittel">Tittel</label></gn-label>
@@ -35,7 +34,6 @@ const NewdatasetForm = () => {
                     </gn-field-container>
                     <gn-button color="primary"><button>Lagre datasett</button></gn-button>
                 </content-container>
-            </div>
     );
 };
 

@@ -1,26 +1,17 @@
 // Dependencies
 import React from "react";
-
+import { useLoaderData } from "react-router-dom";
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
-import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
-import FilelistHistory from "../partials/FilelistHistory";
-import DatasetUpload from "./datasetUpload";
+import BasicUserPage from "../partials/home/BasicUserPage";
+
 
 const UserPage = () => {
+
+    const { dummydata } = useLoaderData();
+    
     return (
-        <content-container>
-            <div id="main-content">
-            <breadcrumb-list id="breadcrumb-list" breadcrumbs="[{&quot;name&quot;:&quot;Forsiden&quot;,&quot;url&quot;:&quot;/&quot;}]"></breadcrumb-list>
-                <heading-text>
-                    <h1 underline="true">User page datasett uploader</h1>
-                </heading-text>
-                <body-text>
-                   <FilelistHistory />
-                    <DatasetUpload />
-                </body-text>
-            </div>
-        </content-container>
+       <BasicUserPage datasetItems={dummydata} />
     );
 };
 

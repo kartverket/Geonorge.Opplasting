@@ -1,5 +1,5 @@
 // Dependencies
-import React from "react";
+import React, { Fragment } from "react";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
@@ -9,16 +9,15 @@ import  AccessRoles from "../partials/AccessRoles";
 
 const Home = () => {
     return (
-        <content-container>
-            <div id="main-content">
+       
+           <Fragment>
                 <heading-text>
                     <h1 underline="true">Opplastingsklienten </h1>
                 </heading-text>
 
                 <AccessRoles />
-
-            </div>
-        </content-container>
+            </Fragment>
+         
     );
 };
 
