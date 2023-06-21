@@ -10,20 +10,23 @@ import { ContentContainer, GnButto, GnFieldContainer, GnInput, GnLabel, BodyText
 
 const NewdatasetForm = () => {
     
-    const titleInputRef = useRef();    
+    const titleInputRef = useRef();   
+    const metadataUuidInputRef = useRef();  
     const contactEmail = useRef();
     const contactName = useRef();
     const ownerOrganization = useRef();
+    const requiredRoleInputRef = useRef(); 
 
 
 
     const handleSubmit = (event) => {
         const datasetForm = {
-            title: titleInputRef.current.value,        
+            title: titleInputRef.current.value,  
+            metadataUuid: metadataUuidInputRef.current.value,       
             contactEmail: contactEmail.current.value,
             contactName: contactName.current.value,
             ownerOrganization: ownerOrganization.current.value,
-            requiredRole: "nd_gjenbruk"
+            requiredRole: requiredRoleInputRef.current.value
         };
         event.preventDefault();
         fetch("https://opplasting.dev.geonorge.no/api/Dataset", {
@@ -43,6 +46,10 @@ const NewdatasetForm = () => {
                         <gn-input><input ref={titleInputRef} id="tittel" /></gn-input>
                     </gn-field-container>
                     <gn-field-container block="">
+                        <gn-label block=""><label for="metadataUuid">Metadata uuid</label></gn-label>
+                        <gn-input><input ref={metadataUuidInputRef} id="metadataUuid" /></gn-input>
+                    </gn-field-container>
+                    <gn-field-container block="">
                         <gn-label block=""><label for="kontaktperson">Kontaktperson</label></gn-label>
                         <gn-input><input ref={contactName} id="kontaktperson" /></gn-input>
                     </gn-field-container>
@@ -53,6 +60,10 @@ const NewdatasetForm = () => {
                     <gn-field-container block="">
                         <gn-label block=""><label for="eier">Eier</label></gn-label>
                         <gn-input><input ref={ownerOrganization} id="eier" /></gn-input>
+                    </gn-field-container>
+                    <gn-field-container block="">
+                        <gn-label block=""><label for="requiredRole">Påkrevd rolle</label></gn-label>
+                        <gn-input><input ref={requiredRoleInputRef} id="requiredRole" /></gn-input>
                     </gn-field-container>                    
                     <gn-button color="primary"><button onClick={handleSubmit}>Opprett nytt datasett</button></gn-button>
                     </form>
