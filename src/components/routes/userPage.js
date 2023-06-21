@@ -8,10 +8,10 @@ import BasicUserPage from "../partials/home/BasicUserPage";
 
 const UserPage = () => {
 
-    const { dummydata } = useLoaderData();
+    const { datasetItems } = useLoaderData();
     
     return (
-       <BasicUserPage datasetItems={dummydata} />
+       <BasicUserPage datasetItems={datasetItems} />
     );
 };
 
