@@ -8,7 +8,7 @@ import { ContentContainer, HeadingText, breadcrumbList } from "@kartverket/geono
 
 const FilelistHistory = () => {
     return (
-        <content-container>
+        
           <gn-table hoverable="">
             <table>
                 <thead>
@@ -32,7 +32,6 @@ const FilelistHistory = () => {
                 </tbody>
             </table>
             </gn-table>  
-        </content-container>
     );
 };
 

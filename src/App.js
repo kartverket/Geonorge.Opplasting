@@ -42,7 +42,8 @@ function App() {
         },
         {
           element: <DatasetOwner />,
-          path: "datasetowner"
+          path: "datasetowner",
+          loader: fetchDatasetItems
         },  
         {
           element: <Newdataset />,
@@ -50,8 +51,7 @@ function App() {
         },
         {
           element: <UserPage />,
-          path: "userpage",
-          loader: fetchDatasetItems        
+          path: "userpage"        
         },
     {
       element: <NotFound />,
