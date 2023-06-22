@@ -6,6 +6,8 @@ import NotFound from "./components/routes/notFound";
 import Admin from "./components/routes/admin";
 import Home from "./components/routes/home";
 import DatasetOwner from "./components/routes/datasetOwner";
+import DatasetDetails from "./components/routes/datasetDetails";
+import EditDataset from "./components/routes/editDataset";
 import UserPage from "./components/routes/userPage";
 import Newdataset from "./components/routes/newDataset";
 import Layout from "./components/layout"
@@ -24,6 +26,15 @@ function App() {
     }).then((datasetItems) => {
       return { datasetItems };
     });
+
+    const fetchDatasetItem = ({ params }) => fetch(
+      `https://opplasting.dev.geonorge.no/api/Dataset/${params.id}`).then(response => {
+        return response.json()
+      }).then((datasetItem) => {
+        return { datasetItem };
+      });
+
+
 
 
 
@@ -47,11 +58,21 @@ function App() {
         },  
         {
           element: <Newdataset />,
-          path: "admin/newdataset"
+          path: "dataset/new"
         },
         {
           element: <UserPage />,
           path: "userpage"        
+        },
+        {
+          element: <DatasetDetails />,
+          path: "dataset/:id",
+          loader: fetchDatasetItem
+        },
+        {
+          element: <EditDataset />,
+          path: "dataset/:id/edit",
+          loader: fetchDatasetItem
         },
     {
       element: <NotFound />,

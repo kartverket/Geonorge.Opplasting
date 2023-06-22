@@ -8,10 +8,21 @@ import FilelistHistory from "../FilelistHistory";
 
 const BasicUserPage = (props) => {
 
-
+    const breadcrumbs = [
+        {
+            "name": "Forside",
+            "url": "/"
+        },
+        {
+            "name": "Innlogget bruker",
+            "url": `/`
+        }
+    
+    ]
     return (
-        <Fragment>
-            <breadcrumb-list id="breadcrumb-list" breadcrumbs="[{&quot;name&quot;:&quot;Forsiden&quot;,&quot;url&quot;:&quot;/&quot;},{&quot;name&quot;:&quot;username?&quot;,&quot;url&quot;:&quot;/datasetOwn&quot;}]"></breadcrumb-list>
+        <content-container>
+            <Fragment>
+                <breadcrumb-list id="breadcrumb-list" breadcrumbs={JSON.stringify(breadcrumbs)}></breadcrumb-list>
                 <heading-text>
                     <h1 underline="true">Side for opplasting av filer til datasett</h1>
                     <p>Logg over tidligere opplastede filer</p>
@@ -21,7 +32,8 @@ const BasicUserPage = (props) => {
                   <FilelistHistory />
                    
                 </body-text>
-           </Fragment>
+            </Fragment>
+        </content-container>
     );
 };
 

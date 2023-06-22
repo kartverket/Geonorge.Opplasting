@@ -23,7 +23,7 @@ const DatasetList = (props) => {
                 </thead>
                 <tbody>
                    {props.datasetItems.map(datasetItem => {
-                    return <DatasetListItem datasetItem={datasetItem} />
+                    return <DatasetListItem key={datasetItem.id} datasetItem={datasetItem} />
                    })}
                 </tbody>
             </table>

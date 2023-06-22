@@ -14,7 +14,7 @@ const AdminPage = () => {
                 <heading-text>
                     <h1>Adminsiden </h1>
                 </heading-text>                
-            <p><a href="admin/newDataset">Nytt datasett</a></p>
+            <p><a href="dataset/new">Nytt datasett</a></p>
             <DatasetUpload />
         </Fragment> 
     );
