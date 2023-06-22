@@ -1,16 +1,95 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { MainNavigation } from '@kartverket/geonorge-web-components/MainNavigation';
- import style from './App.module.scss';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import NotFound from "./components/routes/notFound";
+
+import Admin from "./components/routes/admin";
+import Home from "./components/routes/home";
+import DatasetOwner from "./components/routes/datasetOwner";
+import DatasetDetails from "./components/routes/datasetDetails";
+import EditDataset from "./components/routes/editDataset";
+import UserPage from "./components/routes/userPage";
+import Newdataset from "./components/routes/newDataset";
+import Layout from "./components/layout"
+
+import style from "./App.module.scss";
+
+// eslint-disable-next-line no-unused-vars
+import { ContentContainer } from "@kartverket/geonorge-web-components";
 
 
 function App() {
-  return (
-    <div className={style.kartkatalogen}>
-     <main-navigation environment="dev"></main-navigation>
-      
-    </div>
-  );
+
+  const fetchDatasetItems = () => fetch(
+    "https://opplasting.dev.geonorge.no/api/Dataset").then(response => {
+      return response.json()
+    }).then((datasetItems) => {
+      return { datasetItems };
+    });
+
+    const fetchDatasetItem = ({ params }) => fetch(
+      `https://opplasting.dev.geonorge.no/api/Dataset/${params.id}`).then(response => {
+        return response.json()
+      }).then((datasetItem) => {
+        return { datasetItem };
+      });
+
+
+
+
+
+  const router = createBrowserRouter([
+    {
+      element: <Layout />,
+      id: "root",
+      children: [
+        {
+          element: <Home />,
+          index: true
+        },
+        {
+          element: <Admin />,
+          path: "admin"
+        },
+        {
+          element: <DatasetOwner />,
+          path: "datasetowner",
+          loader: fetchDatasetItems
+        },  
+        {
+          element: <Newdataset />,
+          path: "dataset/new"
+        },
+        {
+          element: <UserPage />,
+          path: "userpage"        
+        },
+        {
+          element: <DatasetDetails />,
+          path: "dataset/:id",
+          loader: fetchDatasetItem
+        },
+        {
+          element: <EditDataset />,
+          path: "dataset/:id/edit",
+          loader: fetchDatasetItem
+        },
+    {
+      element: <NotFound />,
+      path: "*"
+    }
+  ]
+    }
+
+  ]);
+
+return (
+  <div className={style.app}>
+    <content-container>
+      <RouterProvider router={router} />
+    </content-container>
+  </div>
+);
 }
 
 export default App;
