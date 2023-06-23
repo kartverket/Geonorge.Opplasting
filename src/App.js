@@ -6,6 +6,7 @@ import NotFound from "./components/routes/notFound";
 import Admin from "./components/routes/admin";
 import Home from "./components/routes/home";
 import DatasetOwner from "./components/routes/datasetOwner";
+import Dataset from "./components/routes/dataset";
 import DatasetDetails from "./components/routes/datasetDetails";
 import EditDataset from "./components/routes/editDataset";
 import UserPage from "./components/routes/userPage";
@@ -63,6 +64,11 @@ function App() {
         {
           element: <UserPage />,
           path: "userpage"        
+        },
+        {
+          element: <Dataset />,
+          path: "dataset",
+          loader: fetchDatasetItems        
         },
         {
           element: <DatasetDetails />,
