@@ -4,8 +4,9 @@ import { Fragment } from "react";
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
 import { BreadcrumbList, ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
+import NewDatasetForm from "../partials/NewDatasetForm";
 // eslint-disable-next-line no-unused-vars
-import NewdatasetForm from "../partials/NewDatasetForm";
+
 
 
 const Newdataset = () => {
@@ -16,7 +17,7 @@ const Newdataset = () => {
                 <h1 underline="true">Skjema for dataset</h1>
             </heading-text>
            
-            <NewdatasetForm />
+            <NewDatasetForm />
         </Fragment>
     );
 };
