@@ -5,6 +5,7 @@ import React, { Fragment, useRef, useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 const EditDatasetPage = ({ datasetItem }) => {
 
@@ -129,6 +130,7 @@ const EditDatasetPage = ({ datasetItem }) => {
                   <gn-label block=""><label for="requiredRole">Påkrevd rolle</label></gn-label>
                   <gn-input><input defaultValue={datasetItem.requiredRole} ref={requiredRoleInputRef} id="requiredRole" /></gn-input>
                </gn-field-container>
+               <Link to={(`/dataset/${datasetItem.id}`)}>Avbryt</Link>
                <gn-button color="primary"><button onClick={handleSubmit}>Lagre</button></gn-button>
             </form>
          </content-container>
@@ -142,12 +144,13 @@ const EditDatasetPage = ({ datasetItem }) => {
 
          <gn-dialog show={showErrorDialog} width="" overflow="">
             <body-text>
-               Lagring feilet fordi {errorMessage}
+               {errorMessage}
             </body-text>
          </gn-dialog>
 
       </Fragment>
    );
+
 };
 
 export default EditDatasetPage;
