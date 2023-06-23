@@ -4,7 +4,7 @@ import { Fragment } from "react";
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
 import { BreadcrumbList, ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
-import NewDatasetForm from "../partials/NewDatasetForm";
+import NewDatasetForm from "../partials/newDatasetForm";
 // eslint-disable-next-line no-unused-vars
 
 
