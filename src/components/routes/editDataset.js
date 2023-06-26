@@ -12,8 +12,8 @@ const EditDataset = () => {
 
     
 
-    const { datasetItem } = useLoaderData();
-
+    const { datasetItem, allowedFileformats } = useLoaderData();
+    
     return (
        
            <Fragment>
@@ -21,7 +21,7 @@ const EditDataset = () => {
                     <h1 underline="true">rediger dataset </h1>
                 </heading-text>
 
-                <EditDatasetPage datasetItem={datasetItem} />
+                <EditDatasetPage datasetItem={datasetItem} allowedFileformats={allowedFileformats} />
             </Fragment>
          
     );

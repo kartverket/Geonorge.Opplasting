@@ -17,6 +17,7 @@ import style from "./App.module.scss";
 
 // eslint-disable-next-line no-unused-vars
 import { ContentContainer } from "@kartverket/geonorge-web-components";
+import { all } from 'axios';
 
 
 function App() {
@@ -28,14 +29,39 @@ function App() {
       return { datasetItems };
     });
 
-    const fetchDatasetItem = ({ params }) => fetch(
-      `https://opplasting.dev.geonorge.no/api/Dataset/${params.id}`).then(response => {
-        return response.json()
-      }).then((datasetItem) => {
-        return { datasetItem };
-      });
+  const editDatasetLoader = async ({ params }) => {
 
+    const datasetItem = fetchDatasetItem({ params });
+    const allowedFileformat = fetchAllowedFileformats();
 
+    const datasetContent = await Promise.all([datasetItem, allowedFileformat]);
+    let fetchItems = {}
+    datasetContent.forEach(fetchItem => {
+      fetchItems = {
+        ...fetchItems, ...fetchItem
+      }
+    });
+    console.log({ fetchItems })
+    return fetchItems
+  };
+
+  const newDatasetLoader = async () => {
+    return await fetchAllowedFileformats();
+  }
+
+  const fetchDatasetItem = ({ params }) => fetch(
+    `https://opplasting.dev.geonorge.no/api/Dataset/${params.id}`).then(response => {
+      return response.json()
+    }).then((datasetItem) => {
+      return { datasetItem };
+    });
+
+  const fetchAllowedFileformats = () => fetch(
+    "https://opplasting.dev.geonorge.no/api/Dataset/fileformats").then(response => {
+      return response.json()
+    }).then((allowedFileformats) => {
+      return { allowedFileformats };
+    });
 
 
 
@@ -56,46 +82,48 @@ function App() {
           element: <DatasetOwner />,
           path: "datasetowner",
           loader: fetchDatasetItems
-        },  
+        },
         {
           element: <Newdataset />,
-          path: "dataset/new"
+          path: "dataset/new",
+          loader: newDatasetLoader
+        },
+        {
+          element: <EditDataset />,
+          path: "dataset/:id/edit",
+          loader: editDatasetLoader
         },
         {
           element: <UserPage />,
-          path: "userpage"        
+          path: "userpage"
         },
         {
           element: <Dataset />,
           path: "dataset",
-          loader: fetchDatasetItems        
+          loader: fetchDatasetItems
         },
         {
           element: <DatasetDetails />,
           path: "dataset/:id",
           loader: fetchDatasetItem
         },
+
         {
-          element: <EditDataset />,
-          path: "dataset/:id/edit",
-          loader: fetchDatasetItem
-        },
-    {
-      element: <NotFound />,
-      path: "*"
-    }
-  ]
+          element: <NotFound />,
+          path: "*"
+        }
+      ]
     }
 
   ]);
 
-return (
-  <div className={style.app}>
-    <content-container>
-      <RouterProvider router={router} />
-    </content-container>
-  </div>
-);
+  return (
+    <div className={style.app}>
+      <content-container>
+        <RouterProvider router={router} />
+      </content-container>
+    </div>
+  );
 }
 
 export default App;

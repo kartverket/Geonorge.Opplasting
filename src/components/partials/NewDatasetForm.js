@@ -4,8 +4,9 @@ import React, { useRef } from "react";
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
 import { ContentContainer, GnButto, GnFieldContainer, GnInput, GnLabel, BodyText } from "@kartverket/geonorge-web-components";
+import AllowedFileformats from "./AllowedFileformats";
 
-const NewDatasetForm = () => {
+const NewDatasetForm = (props) => {
 
    const titleInputRef = useRef();
    const metadataUuidInputRef = useRef();
@@ -61,6 +62,7 @@ const NewDatasetForm = () => {
                <gn-label block=""><label for="requiredRole">Påkrevd rolle</label></gn-label>
                <gn-input><input ref={requiredRoleInputRef} id="requiredRole" /></gn-input>
             </gn-field-container>
+            <AllowedFileformats allowedFileformats={props.allowedFileformats} />
             <gn-button color="primary"><button onClick={handleSubmit}>Opprett nytt datasett</button></gn-button>
          </form>
       </content-container>

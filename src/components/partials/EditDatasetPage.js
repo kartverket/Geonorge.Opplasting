@@ -6,9 +6,9 @@ import React, { Fragment, useRef, useState } from "react";
 import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import AllowedFileformats from "./AllowedFileformats";
 
-const EditDatasetPage = ({ datasetItem }) => {
-
+const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
    const breadcrumbs = [
       {
          "name": "Forside",
@@ -22,17 +22,13 @@ const EditDatasetPage = ({ datasetItem }) => {
    ]
    const [showSuccessDialog, setShowSuccessDialog] = useState(false);
    const [showErrorDialog, setShowErrorDialog] = useState(false);
-
    const [errorMessage, setErrorMessage] = useState();
-
    const titleInputRef = useRef();
    const metadataUuidInputRef = useRef();
    const contactEmailInputRef = useRef();
    const contactNameInputRef = useRef();
    const ownerOrganizationInputRef = useRef();
    const requiredRoleInputRef = useRef();
-
-
 
    const handleSubmit = async (event) => {
 
@@ -65,38 +61,12 @@ const EditDatasetPage = ({ datasetItem }) => {
             setErrorMessage(error.message);
          }                
       }
-
-
-      /*fetch(`https://opplasting.dev.geonorge.no/api/Dataset/${datasetItem.id}`, {
-         method: "PUT",
-         body: JSON.stringify(datasetForm),
-         headers: {
-            "Content-Type": "application/json"
-            // TOKEN:
-         }
-      }).then(response => {
-         if (response.ok) {
-            setShowSuccessDialog(true)
-         }
-         response.json().then(errorMessagesForAllFields => {
-            console.log(errorMessagesForAllFields);
-            debugger;
-            const errorMessagesString = Object.keys(errorMessagesForAllFields).map(errorMessagesForFieldKey => {
-               const errorMessagesForField = errorMessagesForAllFields[errorMessagesForFieldKey];
-               const errorMessagesForFieldString = errorMessagesForField.map(errorMessage => {
-                  return `${errorMessagesForFieldKey}: ${errorMessage}`
-               })
-               return errorMessagesForFieldString;
-            }).join(", ");
-            console.log(errorMessagesString);
-            throw new Error(errorMessagesString)
-         })
-      }).catch(error => {
-         console.log("Y=BR=")
-         setShowErrorDialog(true);
-         setErrorMessage(error.message);
-      });*/
    };
+
+
+   const handleFileformatOnClick = () => {
+      // håndtere verdier fra radioknappæne
+   } 
 
    return (
       <Fragment>
@@ -106,29 +76,32 @@ const EditDatasetPage = ({ datasetItem }) => {
             <body-text>Fyll inn feltene for å opprette et nytt datasett.</body-text>
             <form onSubmit={handleSubmit}>
                <gn-field-container block="">
-                  <gn-label block=""><label for="tittel">Tittel</label></gn-label>
+                  <gn-label block=""><label htmlFor="tittel">Tittel</label></gn-label>
                   <gn-input><input defaultValue={datasetItem.title} ref={titleInputRef} id="tittel" /></gn-input>
                </gn-field-container>
                <gn-field-container block="">
-                  <gn-label block=""><label for="metadataUuid">Metadata uuid</label></gn-label>
+                  <gn-label block=""><label htmlFor="metadataUuid">Metadata uuid</label></gn-label>
                   <gn-input><input defaultValue={datasetItem.metadataUuid} ref={metadataUuidInputRef} id="metadataUuid" /></gn-input>
                </gn-field-container>
                <gn-field-container block="">
-                  <gn-label block=""><label for="kontaktperson">Kontaktperson</label></gn-label>
+                  <gn-label block=""><label htmlFor="kontaktperson">Kontaktperson</label></gn-label>
                   <gn-input><input defaultValue={datasetItem.contactName} ref={contactNameInputRef} id="kontaktperson" /></gn-input>
                </gn-field-container>
                <gn-field-container block="">
-                  <gn-label block=""><label for="epost">E-post</label></gn-label>
+                  <gn-label block=""><label htmlFor="epost">E-post</label></gn-label>
                   <gn-input><input defaultValue={datasetItem.contactEmail} ref={contactEmailInputRef} id="epost" />
                   </gn-input>
                </gn-field-container>
                <gn-field-container block="">
-                  <gn-label block=""><label for="eier">Eier</label></gn-label>
+                  <gn-label block=""><label htmlFor="eier">Eier</label></gn-label>
                   <gn-input><input defaultValue={datasetItem.ownerOrganization} ref={ownerOrganizationInputRef} id="eier" /></gn-input>
                </gn-field-container>
                <gn-field-container block="">
-                  <gn-label block=""><label for="requiredRole">Påkrevd rolle</label></gn-label>
+                  <gn-label block=""><label htmlFor="requiredRole">Påkrevd rolle</label></gn-label>
                   <gn-input><input defaultValue={datasetItem.requiredRole} ref={requiredRoleInputRef} id="requiredRole" /></gn-input>
+               </gn-field-container>
+               <gn-field-container>
+                  <AllowedFileformats allowedFileformats={allowedFileformats} />
                </gn-field-container>
                <Link to={(`/dataset/${datasetItem.id}`)}>Avbryt</Link>
                <gn-button color="primary"><button onClick={handleSubmit}>Lagre</button></gn-button>

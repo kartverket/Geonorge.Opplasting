@@ -9,7 +9,7 @@ import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-componen
 const DatasetUpload = () => {
     return (          
            <Fragment>
-            <p>LISTER UT ALLE DATASETT</p>
+            Lister datasets
            </Fragment>
                
     );
