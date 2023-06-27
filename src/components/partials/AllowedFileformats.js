@@ -11,7 +11,7 @@ const AllowedFileformats = (props) => {
         
         <gn-field-container block=""><p>Gyldige filformater:</p>        
             {props.allowedFileformats.map(fileformat => {                
-                    return <AllowedFileformatItem key={fileformat.id} fileformat={fileformat} />
+                    return <AllowedFileformatItem key={fileformat.extension} fileformat={fileformat} />
                    })}
         </gn-field-container>
          

@@ -10,7 +10,7 @@ const AllowedFileformatItem = (props) => {
     
     return (        
        <Fragment>       
-               <gn-label block=""><label for={props.fileformat.name}><input id={props.fileformat} type="checkbox" value={props.fileformat.extension} onclick={props.handleOnclick} /> {props.fileformat.name} & .{props.fileformat.extension}</label></gn-label>
+               <gn-label block=""><label htmlFor={props.fileformat.extension}><input id={props.fileformat.extension} type="checkbox" value={props.fileformat.extension} onClick={props.handleOnChangeFormats} /> {props.fileformat.name} (.{props.fileformat.extension})</label></gn-label>
                <gn-input></gn-input>
         </Fragment>
     );

@@ -39,27 +39,27 @@ const NewDatasetForm = (props) => {
       <content-container><body-text>Fyll inn feltene for å opprette et nytt datasett.</body-text>
          <form onSubmit={handleSubmit}>
             <gn-field-container block="">
-               <gn-label block=""><label for="tittel">Tittel</label></gn-label>
+               <gn-label block=""><label htmlFor="tittel">Tittel</label></gn-label>
                <gn-input><input ref={titleInputRef} id="tittel" /></gn-input>
             </gn-field-container>
             <gn-field-container block="">
-               <gn-label block=""><label for="metadataUuid">Metadata uuid</label></gn-label>
+               <gn-label block=""><label htmlFor="metadataUuid">Metadata uuid</label></gn-label>
                <gn-input><input ref={metadataUuidInputRef} id="metadataUuid" /></gn-input>
             </gn-field-container>
             <gn-field-container block="">
-               <gn-label block=""><label for="kontaktperson">Kontaktperson</label></gn-label>
+               <gn-label block=""><label htmlFor="kontaktperson">Kontaktperson</label></gn-label>
                <gn-input><input ref={contactName} id="kontaktperson" /></gn-input>
             </gn-field-container>
             <gn-field-container block="">
-               <gn-label block=""><label for="epost">E-post</label></gn-label>
+               <gn-label block=""><label htmlFor="epost">E-post</label></gn-label>
                <gn-input><input ref={contactEmail} id="epost" /></gn-input>
             </gn-field-container>
             <gn-field-container block="">
-               <gn-label block=""><label for="eier">Eier</label></gn-label>
+               <gn-label block=""><label htmlFor="eier">Eier</label></gn-label>
                <gn-input><input ref={ownerOrganization} id="eier" /></gn-input>
             </gn-field-container>
             <gn-field-container block="">
-               <gn-label block=""><label for="requiredRole">Påkrevd rolle</label></gn-label>
+               <gn-label block=""><label htmlFor="requiredRole">Påkrevd rolle</label></gn-label>
                <gn-input><input ref={requiredRoleInputRef} id="requiredRole" /></gn-input>
             </gn-field-container>
             <AllowedFileformats allowedFileformats={props.allowedFileformats} />
