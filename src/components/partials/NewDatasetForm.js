@@ -14,15 +14,19 @@ const NewDatasetForm = (props) => {
    const contactName = useRef();
    const ownerOrganization = useRef();
    const requiredRoleInputRef = useRef();
+   const requireValidFileInputRef = useRef();
 
    const handleSubmit = (event) => {
+      var requireValidFile = requireValidFileInputRef.current.checked;
       const datasetForm = {
          title: titleInputRef.current.value,
          metadataUuid: metadataUuidInputRef.current.value,
          contactEmail: contactEmail.current.value,
          contactName: contactName.current.value,
          ownerOrganization: ownerOrganization.current.value,
-         requiredRole: requiredRoleInputRef.current.value
+         requiredRole: requiredRoleInputRef.current.value,
+         requireValidFile: requireValidFile,
+         allowedFileFormats : ['gml'] //todo get from component
       };
       event.preventDefault();
       fetch("https://opplasting.dev.geonorge.no/api/Dataset", {
@@ -63,6 +67,10 @@ const NewDatasetForm = (props) => {
                <gn-input><input ref={requiredRoleInputRef} id="requiredRole" /></gn-input>
             </gn-field-container>
             <AllowedFileformats allowedFileformats={props.allowedFileformats} />
+            <gn-field-container block="">
+               <input value="true" type="checkbox" ref={requireValidFileInputRef} id="requireValidFile" />
+               <label htmlFor="requireValidFile">Kreve at fil må være gyldig for å få legge inn</label>
+            </gn-field-container>
             <gn-button color="primary"><button onClick={handleSubmit}>Opprett nytt datasett</button></gn-button>
          </form>
       </content-container>

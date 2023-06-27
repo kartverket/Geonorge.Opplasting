@@ -29,9 +29,10 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
    const contactNameInputRef = useRef();
    const ownerOrganizationInputRef = useRef();
    const requiredRoleInputRef = useRef();
+   const requireValidFileInputRef = useRef();
 
    const handleSubmit = async (event) => {
-
+      var requireValidFile = requireValidFileInputRef.current.checked;
       event.preventDefault();
       setShowErrorDialog(false);
       setShowSuccessDialog(false);
@@ -41,7 +42,9 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
          contactEmail: contactEmailInputRef.current.value,
          contactName: contactNameInputRef.current.value,
          ownerOrganization: ownerOrganizationInputRef.current.value,
-         requiredRole: requiredRoleInputRef.current.value
+         requiredRole: requiredRoleInputRef.current.value,
+         requireValidFile: requireValidFile,
+         allowedFileFormats : ['gml'] //todo get from component
       };
 
       try {
@@ -103,6 +106,10 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
                <gn-field-container>
                   <AllowedFileformats allowedFileformats={allowedFileformats} />
                </gn-field-container>
+               <gn-field-container block="">
+               <input value="true" type="checkbox" defaultChecked={datasetItem.requireValidFile} ref={requireValidFileInputRef} id="requireValidFile" />
+               <label htmlFor="requireValidFile">Kreve at fil må være gyldig for å få legge inn</label>
+            </gn-field-container>
                <Link to={(`/dataset/${datasetItem.id}`)}>Avbryt</Link>
                <gn-button color="primary"><button onClick={handleSubmit}>Lagre</button></gn-button>
             </form>
