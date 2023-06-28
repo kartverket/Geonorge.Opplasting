@@ -12,9 +12,20 @@ const NewDatasetForm = (props) => {
    const [data, setData] = useState('');
 
    const handleFileFormatChange = (event) => {
-      console.log(event.target.checked);
-      console.log(event.target.value);
-      //todo setData(x);
+
+      var formats = data.slice();
+      if(formats === "")
+         formats = [];
+      if(event.target.checked)
+         formats.push(event.target.value);
+      else
+      {
+         var index = formats.indexOf(event.target.value)
+            if (index > -1) {
+               formats.splice(index, 1);
+            }
+      }
+      setData(formats);
 
    }
 
@@ -36,7 +47,7 @@ const NewDatasetForm = (props) => {
          ownerOrganization: ownerOrganization.current.value,
          requiredRole: requiredRoleInputRef.current.value,
          requireValidFile: requireValidFile,
-         allowedFileFormats : ['gml'] //todo get from component
+         allowedFileFormats : data
       };
       event.preventDefault();
       fetch("https://opplasting.dev.geonorge.no/api/Dataset", {
