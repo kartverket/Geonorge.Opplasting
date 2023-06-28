@@ -1,5 +1,6 @@
 // Dependencies
 import React, { useRef } from "react";
+import { useState } from 'react';
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
@@ -7,6 +8,15 @@ import { ContentContainer, GnButto, GnFieldContainer, GnInput, GnLabel, BodyText
 import AllowedFileformats from "./AllowedFileformats";
 
 const NewDatasetForm = (props) => {
+
+   const [data, setData] = useState('');
+
+   const handleFileFormatChange = (event) => {
+      console.log(event.target.checked);
+      console.log(event.target.value);
+      //todo setData(x);
+
+   }
 
    const titleInputRef = useRef();
    const metadataUuidInputRef = useRef();
@@ -66,7 +76,7 @@ const NewDatasetForm = (props) => {
                <gn-label block=""><label htmlFor="requiredRole">Påkrevd rolle</label></gn-label>
                <gn-input><input ref={requiredRoleInputRef} id="requiredRole" /></gn-input>
             </gn-field-container>
-            <AllowedFileformats allowedFileformats={props.allowedFileformats} />
+            <AllowedFileformats allowedFileformats={props.allowedFileformats} handleFileFormatChange={handleFileFormatChange} />
             <gn-field-container block="">
                <input value="true" type="checkbox" ref={requireValidFileInputRef} id="requireValidFile" />
                <label htmlFor="requireValidFile">Kreve at fil må være gyldig for å få legge inn</label>
