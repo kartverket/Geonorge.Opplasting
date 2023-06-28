@@ -6,11 +6,11 @@ import AllowedFileformatItem from "../partials/AllowedFileformatItem"
 
 
 const AllowedFileformats = (props, { handleFileFormatChange }) => {
-    console.log(props);
+    //console.log(props);
     return (
         <gn-field-container block=""><p>Gyldige filformater:</p>        
             {props.allowedFileformats.map(fileformat => {                
-                    return <AllowedFileformatItem key={fileformat.extension} fileformat={fileformat} handleFileFormatChange={props.handleFileFormatChange} />
+                    return <AllowedFileformatItem key={fileformat.extension} fileformat={fileformat} datasetAllowedFileFormats={props.datasetAllowedFileFormats} handleFileFormatChange={props.handleFileFormatChange} />
                    })}
         </gn-field-container>
     );

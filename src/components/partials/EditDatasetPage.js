@@ -31,7 +31,39 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
    const requiredRoleInputRef = useRef();
    const requireValidFileInputRef = useRef();
 
+
+   const [data, setData] = useState();
+
+   const handleFileFormatChange = (event) => {
+      console.log(data);
+      var formats = data !== undefined ? data.slice() : '';
+      if(formats === "")
+         formats = [];
+      if(event.target.checked)
+         formats.push(event.target.value);
+      else
+      {
+         var index = formats.indexOf(event.target.value)
+            if (index > -1) {
+               formats.splice(index, 1);
+            }
+      }
+      setData(formats);
+
+   }
+
    const handleSubmit = async (event) => {
+      var formats = [];
+      var formatsSelected = data;
+      if(formatsSelected === undefined && datasetItem.allowedFileFormats.length > 0)
+      {
+         for (var i=0; i < datasetItem.allowedFileFormats.length; i++) {
+            formats.push(datasetItem.allowedFileFormats[i].extension);
+        }  
+        console.log(formats);
+        setData(formats)
+        formats = formatsSelected;
+      }
       var requireValidFile = requireValidFileInputRef.current.checked;
       event.preventDefault();
       setShowErrorDialog(false);
@@ -44,7 +76,7 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
          ownerOrganization: ownerOrganizationInputRef.current.value,
          requiredRole: requiredRoleInputRef.current.value,
          requireValidFile: requireValidFile,
-         allowedFileFormats : ['gml'] //todo get from component
+         allowedFileFormats : formats
       };
 
       try {
@@ -66,10 +98,6 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
       }
    };
 
-
-   const handleFileformatOnClick = () => {
-      // håndtere verdier fra radioknappæne
-   } 
 
    return (
       <Fragment>
@@ -104,7 +132,7 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
                   <gn-input><input defaultValue={datasetItem.requiredRole} ref={requiredRoleInputRef} id="requiredRole" /></gn-input>
                </gn-field-container>
                <gn-field-container>
-                  <AllowedFileformats allowedFileformats={allowedFileformats} />
+                  <AllowedFileformats allowedFileformats={allowedFileformats} datasetAllowedFileFormats={datasetItem.allowedFileFormats} handleFileFormatChange={handleFileFormatChange} />
                </gn-field-container>
                <gn-field-container block="">
                <input value="true" type="checkbox" defaultChecked={datasetItem.requireValidFile} ref={requireValidFileInputRef} id="requireValidFile" />
