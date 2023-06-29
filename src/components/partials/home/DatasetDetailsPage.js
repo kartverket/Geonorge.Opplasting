@@ -16,7 +16,7 @@ const breadcrumbs = [
     },
     {
         "name": datasetItem.title,
-        "url": `/datasetDetails/${datasetItem.id}`
+        "url": `/dataset/${datasetItem.id}`
     }
 
 ]
