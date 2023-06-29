@@ -54,6 +54,7 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
    const handleFileFormatChange = (event) => {
       console.log(data);
       var formats = data !== undefined ? data.slice() : '';
+      
       if(formats === "")
          formats = [];
       if(event.target.checked)
@@ -83,7 +84,7 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
          ownerOrganization: ownerOrganizationInputRef.current.value,
          requiredRole: requiredRoleInputRef.current.value,
          requireValidFile: requireValidFile,
-         allowedFileFormats : data
+         allowedFileFormats : data.length ? data : null
       };
 
       try {
