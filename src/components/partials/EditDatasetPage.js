@@ -35,15 +35,15 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
       setSelectedFileformats(datasetItem.allowedFileFormats);
     }, [] );
 
-   const setSelectedFileformats = (formats) => 
+   const setSelectedFileformats = (formatsSelected) => 
    {
-      console.log(datasetItem.allowedFileFormats);
+      console.log(formatsSelected);
       var formats = [];
-      if(datasetItem.allowedFileFormats.length > 0)
+      if(formatsSelected.length > 0)
       {
-         for (var i=0; i < datasetItem.allowedFileFormats.length; i++) 
+         for (var i=0; i < formatsSelected.length; i++) 
          {
-            formats.push(datasetItem.allowedFileFormats[i].extension);
+            formats.push(formatsSelected[i].extension);
          } 
       }
       setData(formats); 
