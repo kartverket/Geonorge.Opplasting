@@ -33,7 +33,7 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
 
    useEffect(() => {
       setSelectedFileformats(datasetItem.allowedFileFormats);
-    }, [] );
+    }, [datasetItem.allowedFileFormats] );
 
    const setSelectedFileformats = (formatsSelected) => 
    {
