@@ -10,8 +10,12 @@ const AllowedFileformatItem = (props,  {handleFileFormatChange }) => {
     //console.log(props.datasetAllowedFileFormats);
 
     const isChecked = (format, formatSelected) => {
-        if (formatSelected !== undefined && formatSelected.length > 0 && format === formatSelected[0].extension) {
-           return true;
+        
+        if (formatSelected !== undefined && formatSelected.length > 0) {
+            for (var i=0; i < formatSelected.length; i++) {
+                if(formatSelected[i].extension ===  format)
+                    return true;
+            }  
         }
 
         return false;

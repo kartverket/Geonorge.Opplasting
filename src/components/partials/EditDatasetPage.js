@@ -55,15 +55,25 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
    const handleSubmit = async (event) => {
       var formats = [];
       var formatsSelected = data;
-      if(formatsSelected === undefined && datasetItem.allowedFileFormats.length > 0)
+      if(datasetItem.allowedFileFormats.length > 0)
       {
          for (var i=0; i < datasetItem.allowedFileFormats.length; i++) {
             formats.push(datasetItem.allowedFileFormats[i].extension);
         }  
-        console.log(formats);
+
+        if(formatsSelected !== undefined)
+        {
+         for (var i=0; i < formatsSelected.length; i++) {
+            if(!formats.includes(formatsSelected[i]))
+               formats.push(formatsSelected[i]);
+        }             
+        }
+
         setData(formats)
-        formats = formatsSelected;
       }
+
+      console.log(formatsSelected);
+
       var requireValidFile = requireValidFileInputRef.current.checked;
       event.preventDefault();
       setShowErrorDialog(false);
