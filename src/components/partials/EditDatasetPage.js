@@ -1,5 +1,5 @@
 // Dependencies
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect , useRef, useState } from "react";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
@@ -31,6 +31,23 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
    const requiredRoleInputRef = useRef();
    const requireValidFileInputRef = useRef();
 
+   useEffect(() => {
+      setSelectedFileformats(datasetItem.allowedFileFormats);
+    }, [] );
+
+   const setSelectedFileformats = (formats) => 
+   {
+      console.log(datasetItem.allowedFileFormats);
+      var formats = [];
+      if(datasetItem.allowedFileFormats.length > 0)
+      {
+         for (var i=0; i < datasetItem.allowedFileFormats.length; i++) 
+         {
+            formats.push(datasetItem.allowedFileFormats[i].extension);
+         } 
+      }
+      setData(formats); 
+   }
 
    const [data, setData] = useState();
 
@@ -53,26 +70,6 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
    }
 
    const handleSubmit = async (event) => {
-      var formats = [];
-      var formatsSelected = data;
-      if(datasetItem.allowedFileFormats.length > 0)
-      {
-         for (var i=0; i < datasetItem.allowedFileFormats.length; i++) {
-            formats.push(datasetItem.allowedFileFormats[i].extension);
-        }  
-
-        if(formatsSelected !== undefined)
-        {
-         for (var i=0; i < formatsSelected.length; i++) {
-            if(!formats.includes(formatsSelected[i]))
-               formats.push(formatsSelected[i]);
-        }             
-        }
-
-        setData(formats)
-      }
-
-      console.log(formatsSelected);
 
       var requireValidFile = requireValidFileInputRef.current.checked;
       event.preventDefault();
@@ -86,7 +83,7 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
          ownerOrganization: ownerOrganizationInputRef.current.value,
          requiredRole: requiredRoleInputRef.current.value,
          requireValidFile: requireValidFile,
-         allowedFileFormats : formats
+         allowedFileFormats : data
       };
 
       try {
