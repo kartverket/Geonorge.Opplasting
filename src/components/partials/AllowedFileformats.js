@@ -9,7 +9,7 @@ const AllowedFileformats = (props, { handleFileFormatChange }) => {
     //console.log(props);
     return (
         <gn-field-container block=""><p>Gyldige filformater:</p>        
-            {props.allowedFileformats.map(fileformat => {                
+            {props.allowedFileformats.map(fileformat =>     {                
                     return <AllowedFileformatItem key={fileformat.extension} fileformat={fileformat} datasetAllowedFileFormats={props.datasetAllowedFileFormats} handleFileFormatChange={props.handleFileFormatChange} />
                    })}
         </gn-field-container>

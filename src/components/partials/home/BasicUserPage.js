@@ -20,7 +20,7 @@ const BasicUserPage = (props) => {
     
     ]
     return (
-        <content-container>
+        
             <Fragment>
                 <breadcrumb-list id="breadcrumb-list" breadcrumbs={JSON.stringify(breadcrumbs)}></breadcrumb-list>
                 <heading-text>
@@ -33,7 +33,7 @@ const BasicUserPage = (props) => {
                    
                 </body-text>
             </Fragment>
-        </content-container>
+       
     );
 };
 

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const AccessRoles = () => {
     return (
         <React.Fragment>
-            <content-container>
+            
             <heading-text><h2>Velg rolle</h2></heading-text>
             <body-text>Dette er kun en foreløpig løsning til vi får på plass innlogging. Kun til bruk for brukertesting</body-text>
                 <gn-field-container block="">
@@ -20,7 +20,7 @@ const AccessRoles = () => {
 <heading-text><h3>Se alle datasettene her:</h3> </heading-text>
                     <p><Link to="dataset">Se alle datasett</Link></p>
                 </gn-field-container>
-            </content-container>
+            
         </React.Fragment>
     );
 };  

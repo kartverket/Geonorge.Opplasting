@@ -12,10 +12,10 @@ const Layout = (props) => {
     return (
        <Fragment>
          <main-navigation environment="dev"></main-navigation>
-            <content-container>
+           
                 <Outlet />
                 <geonorge-footer />
-            </content-container>
+            
         </Fragment>
     );
 };
