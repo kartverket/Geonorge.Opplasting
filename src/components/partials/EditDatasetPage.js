@@ -109,7 +109,6 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
 
    return (
       <Fragment>
-         <content-container>
             <breadcrumb-list id="breadcrumb-list" breadcrumbs={JSON.stringify(breadcrumbs)}></breadcrumb-list>
             <h4>{datasetItem.title} </h4>
             <body-text>Fyll inn feltene for å opprette et nytt datasett.</body-text>
@@ -149,7 +148,6 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
                <Link to={(`/dataset/${datasetItem.id}`)}>Avbryt</Link>
                <gn-button color="primary"><button onClick={handleSubmit}>Lagre</button></gn-button>
             </form>
-         </content-container>
 
 
          <gn-dialog show={showSuccessDialog} width="" overflow="">

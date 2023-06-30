@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useRef } from "react";
+import React, { Fragment, useRef } from "react";
 import { useState } from 'react';
 
 // Geonorge WebComponents
@@ -61,7 +61,8 @@ const NewDatasetForm = (props) => {
    };
 
    return (
-      <content-container><body-text>Fyll inn feltene for å opprette et nytt datasett.</body-text>
+      <Fragment>
+      <body-text>Fyll inn feltene for å opprette et nytt datasett.</body-text>
          <form onSubmit={handleSubmit}>
             <gn-field-container block="">
                <gn-label block=""><label htmlFor="tittel">Tittel</label></gn-label>
@@ -94,7 +95,7 @@ const NewDatasetForm = (props) => {
             </gn-field-container>
             <gn-button color="primary"><button onClick={handleSubmit}>Opprett nytt datasett</button></gn-button>
          </form>
-      </content-container>
+         </Fragment>
    );
 };
 
