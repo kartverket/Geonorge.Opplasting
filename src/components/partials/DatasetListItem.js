@@ -13,7 +13,7 @@ const DatasetListItem = (props) => {
     return (
           <tr>
             <td><Link to={url}>{props.datasetItem.title}</Link></td>
-            <td>{props.datasetItem.id}</td>
+            <td>{props.datasetItem.ownerOrganization}</td>
             <td>{props.datasetItem.contactEmail}</td>
           </tr>
     );

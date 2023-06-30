@@ -17,7 +17,7 @@ const Newdataset = () => {
     const {allowedFileformats} = useLoaderData();
     return (
         <Fragment>
-                <breadcrumb-list id="breadcrumb-list" breadcrumbs="[{&quot;name&quot;:&quot;Forsiden&quot;,&quot;url&quot;:&quot;/&quot;},{&quot;name&quot;:&quot;Admin&quot;,&quot;url&quot;:&quot;/admin&quot;},{&quot;name&quot;:&quot;Nytt datasett&quot;,&quot;url&quot;:&quot;https://kartverket.github.io/Geonorge.WebComponents/iframe.html?viewMode=story&amp;id=*&quot;}]"></breadcrumb-list>
+                <breadcrumb-list id="breadcrumb-list" breadcrumbs="[{&quot;name&quot;:&quot;Forsiden&quot;,&quot;url&quot;:&quot;/&quot;},{&quot;name&quot;:&quot;Admin&quot;,&quot;url&quot;:&quot;/admin&quot;},{&quot;name&quot;:&quot;Nytt datasett&quot;,&quot;url&quot;:&quot;new&quot;}]"></breadcrumb-list>
             <heading-text>
                 <h1 underline="true">Skjema for dataset</h1>
             </heading-text>

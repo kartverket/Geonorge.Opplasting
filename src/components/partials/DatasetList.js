@@ -17,8 +17,8 @@ const DatasetList = (props) => {
                 <thead>
                     <tr>
                         <th>Tittel</th>
-                        <th>Dato</th>
                         <th>Eier</th>
+                        <th>E-post</th>
                     </tr>
                 </thead>
                 <tbody>
