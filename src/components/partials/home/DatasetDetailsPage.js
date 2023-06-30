@@ -18,7 +18,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
         },
         {
             "name": datasetItem.title,
-            "url": `/datasetDetails/${datasetItem.id}`
+            "url": `/dataset/${datasetItem.id}`
         }
 
     ]
