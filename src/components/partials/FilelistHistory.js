@@ -19,8 +19,8 @@ const FilelistHistory = ({datasetItem}) => {
             <table>
                 <thead>
                     <tr>
-                        <th>Tittel</th>
-                        <th>Dataset</th>
+                        <th>Filnavn</th>
+                        <th>Dato</th>
                         <th>Status</th>
                     </tr>
                 </thead>

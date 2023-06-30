@@ -14,7 +14,7 @@ const FilelistItem = (props) => {
     return (
           <tr>
             <td><Link to={url}>{props.file.fileName}</Link></td>
-            <td>{props.file.dataset}</td>
+            <td>{props.file.date}</td>
             <td>{props.file.status}</td>
           </tr>
     );

@@ -10,7 +10,6 @@ import FilelistHistory from "../FilelistHistory";
 
 const DatasetDetailsPage = ({ datasetItem }) => {
 
-
     const breadcrumbs = [
         {
             "name": "Forside",
@@ -22,6 +21,30 @@ const DatasetDetailsPage = ({ datasetItem }) => {
         }
 
     ]
+
+    
+    const getAllowedFileFormats = () => {
+        
+        var format = "";
+        console.log(datasetItem.allowedFileFormats);
+        for (var i=0; i < datasetItem.allowedFileFormats.length; i++) {
+            format = format + "." + datasetItem.allowedFileFormats[i].extension;
+            if(i < datasetItem.allowedFileFormats.length -1)
+                format = format + ",";
+        }  
+
+
+        return format;
+  
+     }
+
+
+     const handleUploadClick = async (event) => {
+
+        console.log("todo");
+        //https://www.geeksforgeeks.org/file-uploading-in-react-js/
+     };
+
 
     return (
 
@@ -39,8 +62,9 @@ const DatasetDetailsPage = ({ datasetItem }) => {
 
 
 
-            </gn-bodytext>            
-                <gn-button color="primary"><button>Last opp fil til gjeldende dataset</button></gn-button>
+            </gn-bodytext>  
+               <gn-label for="fil">Fil: </gn-label><input id="fil" accept={getAllowedFileFormats()} type="file"></input> 
+                <gn-button color="primary"><button onClick={handleUploadClick}>Last opp fil til gjeldende dataset</button></gn-button>
              <heading-text><h3>Tidligere opplastede filer</h3></heading-text>            
             <FilelistHistory datasetItem={datasetItem} />
 
