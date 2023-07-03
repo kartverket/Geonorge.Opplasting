@@ -12,6 +12,10 @@ import FilelistHistory from "../FilelistHistory";
 
 const DatasetDetailsPage = ({ datasetItem }) => {
 
+    const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+    const [showErrorDialog, setShowErrorDialog] = useState(false);
+    const [errorMessage, setErrorMessage] = useState();
+
     const breadcrumbs = [
         {
             "name": "Forside",
@@ -51,20 +55,36 @@ const DatasetDetailsPage = ({ datasetItem }) => {
 
 
      const handleUploadClick = async (event) => {
+        try 
+        {
+            const formData = new FormData();
+    
+            formData.append(
+                "file",
+                data.selectedFile,
+                data.selectedFile.name
+            );
+            formData.append(
+                "datasetId",
+                datasetItem.id
+            );
 
-         const formData = new FormData();
- 
-         formData.append(
-             "file",
-             data.selectedFile,
-             data.selectedFile.name
-         );
-         formData.append(
-            "datasetId",
-            datasetItem.id
-        );
+            const response = await axios.post("https://opplasting.dev.geonorge.no/api/Dataset/file", formData);
 
-         axios.post("https://opplasting.dev.geonorge.no/api/Dataset/file", formData);
+            if (response.data) {
+                setShowSuccessDialog(true)
+            }
+        } 
+        catch (error) {
+            setShowErrorDialog(true);
+   
+            if (error.response?.data) {
+               const messages = Object.values(error.response.data).map(value => value.join(', '));
+               setErrorMessage(messages.join('\r\n'));
+            } else {
+               setErrorMessage(error.message);
+            }                
+        }
 
      };
 
@@ -91,6 +111,17 @@ const DatasetDetailsPage = ({ datasetItem }) => {
              <heading-text><h3>Tidligere opplastede filer</h3></heading-text>            
             <FilelistHistory datasetItem={datasetItem} />
 
+            <gn-dialog show={showSuccessDialog} width="" overflow="">
+            <body-text>
+               Fil er lastet opp
+            </body-text>
+            </gn-dialog>
+
+            <gn-dialog show={showErrorDialog} width="" overflow="">
+                <body-text>
+                {errorMessage}
+                </body-text>
+            </gn-dialog>
             </Fragment>
 
     );
