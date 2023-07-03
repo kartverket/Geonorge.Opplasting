@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const FilelistItem = (props) => {
 
-  const url = `/dataset/${props.datasetId}/files/${props.file.id}`
+  const url = `https://opplasting.dev.geonorge.no/api/Dataset/download-file/${props.file.id}`
   
     return (
           <tr>

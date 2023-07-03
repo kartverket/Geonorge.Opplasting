@@ -15,6 +15,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
     const [showSuccessDialog, setShowSuccessDialog] = useState(false);
     const [showErrorDialog, setShowErrorDialog] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
+    const [showValidationErrorDialog, setShowValidationErrorDialog] = useState(false);
 
     const breadcrumbs = [
         {
@@ -69,6 +70,11 @@ const DatasetDetailsPage = ({ datasetItem }) => {
                 datasetItem.id
             );
 
+            formData.append(
+                "requireValidFile",
+                datasetItem.requireValidFile
+            );
+
             const response = await axios.post("https://opplasting.dev.geonorge.no/api/Dataset/file", formData);
 
             if (response.data) {
@@ -77,10 +83,17 @@ const DatasetDetailsPage = ({ datasetItem }) => {
         } 
         catch (error) {
             setShowErrorDialog(true);
-   
-            if (error.response?.data) {
-               const messages = Object.values(error.response.data).map(value => value.join(', '));
-               setErrorMessage(messages.join('\r\n'));
+            if(error.response?.status == 422)
+            {
+                var messages = error.response.data;
+                setErrorMessage(messages);
+                setShowErrorDialog(false);
+                setShowValidationErrorDialog(true);
+            }
+            else if (error.response?.data) {
+
+               const messages = error.response?.data?.title;
+               setErrorMessage(messages);
             } else {
                setErrorMessage(error.message);
             }                
@@ -120,6 +133,15 @@ const DatasetDetailsPage = ({ datasetItem }) => {
             <gn-dialog show={showErrorDialog} width="" overflow="">
                 <body-text>
                 {errorMessage}
+                </body-text>
+            </gn-dialog>
+
+            <gn-dialog show={showValidationErrorDialog} width="" overflow="">
+                <body-text>
+                {errorMessage}
+                <div>
+                <a href='https://validator.geonorge.no/' target='_blank'>Gå til validator for å validere</a>
+                </div>
                 </body-text>
             </gn-dialog>
             </Fragment>
