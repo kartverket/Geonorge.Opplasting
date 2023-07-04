@@ -160,14 +160,16 @@ const DatasetDetailsPage = ({ datasetItem }) => {
                 <p>{datasetItem.ownerOrganization}</p>
                 <p>{datasetItem.requiredRole}</p>
                 <p><Link to="edit">Redigere datasettet</Link>  </p>
-
-
-
-
             </gn-bodytext>  
-               <gn-label for="fil">Fil: </gn-label> ({getAllowedFileFormats()})<input id="fil" accept={getAllowedFileFormats()} type="file" onChange={onFileChange}></input> 
+
+            <label htmlFor="fil" className="drop-container">
+                <input type="file" id="fil" accept={getAllowedFileFormats()} required onChange={onFileChange}></input>
+                <span>({getAllowedFileFormats()})</span>
                 <gn-button color="primary"><button onClick={handleUploadClick}>Last opp fil til gjeldende dataset</button></gn-button>
-             <heading-text><h3>Tidligere opplastede filer</h3></heading-text>            
+            </label>
+
+            
+            <heading-text><h3>Tidligere opplastede filer</h3></heading-text>            
             <FilelistHistory datasetItem={datasetItem} />
 
             <gn-dialog show={showSuccessDialog} width="" overflow="">
