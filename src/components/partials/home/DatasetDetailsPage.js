@@ -54,6 +54,13 @@ const DatasetDetailsPage = ({ datasetItem }) => {
   
      }
 
+     const showValidationDialogError = () => {
+        setShowValidationErrorDialog(false);
+        setTimeout(() => {
+            setShowValidationErrorDialog(true);
+        });
+    };
+
 
      const handleUploadClick = async (event) => {
         try 
@@ -88,7 +95,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
                 var messages = error.response.data;
                 setErrorMessage(messages);
                 setShowErrorDialog(false);
-                setShowValidationErrorDialog(true);
+                showValidationDialogError();
             }
             else if (error.response?.data) {
 
@@ -119,7 +126,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
 
 
             </gn-bodytext>  
-               <gn-label for="fil">Fil: </gn-label><input id="fil" accept={getAllowedFileFormats()} type="file" onChange={onFileChange}></input> 
+               <gn-label for="fil">Fil: </gn-label> ({getAllowedFileFormats()})<input id="fil" accept={getAllowedFileFormats()} type="file" onChange={onFileChange}></input> 
                 <gn-button color="primary"><button onClick={handleUploadClick}>Last opp fil til gjeldende dataset</button></gn-button>
              <heading-text><h3>Tidligere opplastede filer</h3></heading-text>            
             <FilelistHistory datasetItem={datasetItem} />
