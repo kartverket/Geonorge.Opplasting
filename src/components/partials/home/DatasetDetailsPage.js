@@ -69,6 +69,28 @@ const DatasetDetailsPage = ({ datasetItem }) => {
         });
     };
 
+    const setShowSuccessDialogBox = () => {
+        setShowSuccessDialog(false);
+        setTimeout(() => {
+            setShowSuccessDialog(true);
+        });
+    };
+
+
+    const showDialogErrorBox = () => {
+        setShowErrorDialog(false);
+        setTimeout(() => {
+            setShowErrorDialog(true);
+        });
+    };
+
+    const hideDialogErrorBox = () => {
+        setShowErrorDialog(true);
+        setTimeout(() => {
+            setShowErrorDialog(false);
+        });
+    };
+
     const handleUploadAllowErrorClick = async (event) => {
 
         requireValidFileSelection = false;
@@ -99,16 +121,16 @@ const DatasetDetailsPage = ({ datasetItem }) => {
             const response = await axios.post("https://opplasting.dev.geonorge.no/api/Dataset/file", formData);
 
             if (response.data) {
-                setShowSuccessDialog(true)
+                setShowSuccessDialogBox();
             }
         } 
         catch (error) {
-            setShowErrorDialog(true);
+            showDialogErrorBox();
             if(error.response?.status === 422)
             {
                 var messages = error.response.data;
                 setErrorMessage(messages);
-                setShowErrorDialog(false);
+                hideDialogErrorBox();
                 showValidationDialogError();
             }
             else if (error.response?.data) {
