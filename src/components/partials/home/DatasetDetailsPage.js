@@ -150,7 +150,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
                 <body-text>
                 {errorMessage}
                 <div>
-                <a href='https://validator.geonorge.no/' target='_blank'>Gå til validator for å validere</a>
+                <a href='https://validator.geonorge.no/' target='_blank' rel="noreferrer">Gå til validator for å validere</a>
                 </div>
                 </body-text>
             </gn-dialog>
