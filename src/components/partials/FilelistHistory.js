@@ -1,5 +1,5 @@
 // Dependencies
-import React from "react";
+import React, { Fragment } from "react";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
@@ -14,6 +14,7 @@ const FilelistHistory = ({datasetItem}) => {
     }
 
     return (
+        <Fragment>
         
           <gn-table hoverable="">
             <table>
@@ -32,6 +33,7 @@ const FilelistHistory = ({datasetItem}) => {
                 </tbody>
             </table>
             </gn-table>  
+            </Fragment>
     );
 };
 

@@ -16,7 +16,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
     const [showErrorDialog, setShowErrorDialog] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
     const [showValidationErrorDialog, setShowValidationErrorDialog] = useState(false);
-
+    
     const breadcrumbs = [
         {
             "name": "Forside",
@@ -109,13 +109,16 @@ const DatasetDetailsPage = ({ datasetItem }) => {
      };
 
 
+
+
+
     return (
 
-       <Fragment>
+        <Fragment>
             <breadcrumb-list id="breadcrumb-list" breadcrumbs={JSON.stringify(breadcrumbs)}></breadcrumb-list>
-           
-                <heading-text><h2>{datasetItem.title} </h2></heading-text>
-                <gn-bodytext>
+
+            <heading-text><h2>{datasetItem.title} </h2></heading-text>
+            <gn-bodytext>
                 <p>{datasetItem.contactName}</p>
                 <p>{datasetItem.contactEmail}</p>
                 <p>{datasetItem.ownerOrganization}</p>
@@ -151,7 +154,9 @@ const DatasetDetailsPage = ({ datasetItem }) => {
                 </div>
                 </body-text>
             </gn-dialog>
-            </Fragment>
+
+
+        </Fragment>
 
     );
 };
