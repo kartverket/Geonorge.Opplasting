@@ -90,7 +90,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
         } 
         catch (error) {
             setShowErrorDialog(true);
-            if(error.response?.status == 422)
+            if(error.response?.status === 422)
             {
                 var messages = error.response.data;
                 setErrorMessage(messages);
