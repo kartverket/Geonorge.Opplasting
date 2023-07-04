@@ -16,6 +16,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
     const [showErrorDialog, setShowErrorDialog] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
     const [showValidationErrorDialog, setShowValidationErrorDialog] = useState(false);
+    var requireValidFileSelection = true;
     
     const breadcrumbs = [
         {
@@ -61,6 +62,19 @@ const DatasetDetailsPage = ({ datasetItem }) => {
         });
     };
 
+    const hideValidationDialogError = () => {
+        setShowValidationErrorDialog(true);
+        setTimeout(() => {
+            setShowValidationErrorDialog(false);
+        });
+    };
+
+    const handleUploadAllowErrorClick = async (event) => {
+
+        requireValidFileSelection = false;
+        hideValidationDialogError();
+        handleUploadClick(event);
+    };
 
      const handleUploadClick = async (event) => {
         try 
@@ -76,10 +90,10 @@ const DatasetDetailsPage = ({ datasetItem }) => {
                 "datasetId",
                 datasetItem.id
             );
-
+            
             formData.append(
                 "requireValidFile",
-                datasetItem.requireValidFile
+                requireValidFileSelection
             );
 
             const response = await axios.post("https://opplasting.dev.geonorge.no/api/Dataset/file", formData);
@@ -152,6 +166,11 @@ const DatasetDetailsPage = ({ datasetItem }) => {
                 <div>
                 <a href='https://validator.geonorge.no/' target='_blank' rel="noreferrer">Gå til validator for å validere</a>
                 </div>
+                {!datasetItem.requireValidFile &&
+                <div>
+                <gn-button color="primary"><button onClick={handleUploadAllowErrorClick}>Last opp fil med feil</button></gn-button>
+                </div>
+                }
                 </body-text>
             </gn-dialog>
 
