@@ -165,9 +165,10 @@ const DatasetDetailsPage = ({ datasetItem }) => {
             <label htmlFor="fil" className="drop-container">
                 <input type="file" id="fil" accept={getAllowedFileFormats()} required onChange={onFileChange}></input>
                 <span>({getAllowedFileFormats()})</span>
-                <gn-button color="primary"><button onClick={handleUploadClick}>Last opp fil til gjeldende dataset</button></gn-button>
             </label>
-
+            <div className="upload-div">
+            <gn-button color="primary"><button onClick={handleUploadClick}>Last opp fil til gjeldende dataset</button></gn-button>
+            </div>
             
             <heading-text><h3>Tidligere opplastede filer</h3></heading-text>            
             <FilelistHistory datasetItem={datasetItem} />

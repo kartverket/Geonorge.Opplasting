@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 140px;
+    height: 70px;
     padding: 20px;
     border-radius: 10px;
     border: 2px dashed #d8e4eb;
@@ -44,4 +44,9 @@
   
   input[type=file]::file-selector-button:hover {
     background: #3767c7;
+  }
+
+  .upload-div
+  {
+    float: right;
   }
