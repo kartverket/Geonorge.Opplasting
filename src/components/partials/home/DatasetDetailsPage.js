@@ -17,6 +17,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
     const [errorMessage, setErrorMessage] = useState();
     const [showValidationErrorDialog, setShowValidationErrorDialog] = useState(false);
     var requireValidFileSelection = true;
+    const [showIsLoading, setShowIsLoading] = useState(false);
     
     const breadcrumbs = [
         {
@@ -91,6 +92,21 @@ const DatasetDetailsPage = ({ datasetItem }) => {
         });
     };
 
+
+    const showIsLoadingBox = () => {
+        setShowIsLoading(false);
+        setTimeout(() => {
+            setShowIsLoading(true);
+        });
+    };
+
+    const hideIsLoadingBox = () => {
+        setShowIsLoading(true);
+        setTimeout(() => {
+            setShowIsLoading(false);
+        });
+    };
+
     const handleUploadAllowErrorClick = async (event) => {
 
         requireValidFileSelection = false;
@@ -101,6 +117,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
      const handleUploadClick = async (event) => {
         try 
         {
+            showIsLoadingBox();
             const formData = new FormData();
     
             formData.append(
@@ -121,10 +138,12 @@ const DatasetDetailsPage = ({ datasetItem }) => {
             const response = await axios.post("https://opplasting.dev.geonorge.no/api/Dataset/file", formData);
 
             if (response.data) {
+                hideIsLoadingBox();
                 setShowSuccessDialogBox();
             }
         } 
         catch (error) {
+            hideIsLoadingBox();
             showDialogErrorBox();
             if(error.response?.status === 422)
             {
@@ -182,6 +201,12 @@ const DatasetDetailsPage = ({ datasetItem }) => {
             <gn-dialog show={showErrorDialog} width="" overflow="">
                 <body-text>
                 {errorMessage}
+                </body-text>
+            </gn-dialog>
+
+            <gn-dialog show={showIsLoading} width="" overflow="">
+                <body-text>
+                Laster opp...
                 </body-text>
             </gn-dialog>
 
