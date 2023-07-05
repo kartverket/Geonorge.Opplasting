@@ -40,6 +40,10 @@ const DatasetDetailsPage = ({ datasetItem }) => {
   
      }
 
+     function refreshPage() {
+        window.location.reload(false);
+      }
+
     
     const getAllowedFileFormats = () => {
         
@@ -192,7 +196,7 @@ const DatasetDetailsPage = ({ datasetItem }) => {
             <heading-text><h3>Tidligere opplastede filer</h3></heading-text>            
             <FilelistHistory datasetItem={datasetItem} />
 
-            <gn-dialog show={showSuccessDialog} width="" overflow="">
+            <gn-dialog show={showSuccessDialog} width="" overflow="" onClick={refreshPage}>
             <body-text>
                Fil er lastet opp
             </body-text>
