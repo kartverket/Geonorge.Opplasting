@@ -1,4 +1,5 @@
 // Dependencies
+import axios from 'axios';
 import React, { Fragment, useRef } from "react";
 import { useState } from 'react';
 
@@ -10,6 +11,9 @@ import AllowedFileformats from "./AllowedFileformats";
 const NewDatasetForm = (props) => {
 
    const [data, setData] = useState('');
+   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+   const [showErrorDialog, setShowErrorDialog] = useState(false);
+   const [errorMessage, setErrorMessage] = useState();
 
    const handleFileFormatChange = (event) => {
 
@@ -38,7 +42,7 @@ const NewDatasetForm = (props) => {
    const requiredRoleInputRef = useRef();
    const requireValidFileInputRef = useRef();
 
-   const handleSubmit = (event) => {
+   const handleSubmit = async (event) => {
       var requireValidFile = requireValidFileInputRef.current.checked;
       const datasetForm = {
          title: titleInputRef.current.value,
@@ -52,14 +56,27 @@ const NewDatasetForm = (props) => {
          allowedFileFormats : data
       };
       event.preventDefault();
-      fetch("https://opplasting.dev.geonorge.no/api/Dataset", {
-         method: "POST",
-         body: JSON.stringify(datasetForm),
-         headers: {
-            "Content-Type": "application/json"
-            // TOKEN:
+      try {
+         const response = await axios.post("https://opplasting.dev.geonorge.no/api/Dataset", datasetForm
+         );
+         console.log(response.data);
+         if (response.data) {
+            setShowSuccessDialog(true)
          }
-      });
+      }
+      catch(error)
+      {
+         console.log("Feil");
+         console.log(error);
+         setShowErrorDialog(true);
+
+         if (error.response?.data) {
+            const messages = Object.values(error.response.data).map(value => value.join(', '));
+            setErrorMessage(messages.join('\r\n'));
+         } else {
+            setErrorMessage(error.message);
+         }   
+      }
    };
 
    return (
@@ -101,6 +118,19 @@ const NewDatasetForm = (props) => {
             </gn-field-container>
             <gn-button color="primary"><button onClick={handleSubmit}>Opprett nytt datasett</button></gn-button>
          </form>
+
+         <gn-dialog show={showSuccessDialog} width="" overflow="">
+            <body-text>
+               Datasett lagt til!
+            </body-text>
+         </gn-dialog>
+
+         <gn-dialog show={showErrorDialog} width="" overflow="">
+            <body-text>
+               {errorMessage}
+            </body-text>
+         </gn-dialog>
+
          </Fragment>
    );
 };
