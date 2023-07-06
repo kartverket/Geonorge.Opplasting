@@ -42,6 +42,22 @@ const NewDatasetForm = (props) => {
    const requiredRoleInputRef = useRef();
    const requireValidFileInputRef = useRef();
 
+   const setShowSuccessDialogBox = () => {
+      setShowSuccessDialog(false);
+      setTimeout(() => {
+          setShowSuccessDialog(true);
+      });
+  };
+
+
+  const showDialogErrorBox = () => {
+      setShowErrorDialog(false);
+      setTimeout(() => {
+          setShowErrorDialog(true);
+      });
+  };
+
+
    const handleSubmit = async (event) => {
       var requireValidFile = requireValidFileInputRef.current.checked;
       const datasetForm = {
@@ -61,14 +77,12 @@ const NewDatasetForm = (props) => {
          );
          console.log(response.data);
          if (response.data) {
-            setShowSuccessDialog(true)
+            setShowSuccessDialogBox();
          }
       }
       catch(error)
       {
-         console.log("Feil");
-         console.log(error);
-         setShowErrorDialog(true);
+         showDialogErrorBox();
 
          if (error.response?.data) {
             const messages = Object.values(error.response.data).map(value => value.join(', '));

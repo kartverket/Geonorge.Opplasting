@@ -32,6 +32,21 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
    const requiredRoleInputRef = useRef();
    const requireValidFileInputRef = useRef();
 
+   const setShowSuccessDialogBox = () => {
+      setShowSuccessDialog(false);
+      setTimeout(() => {
+          setShowSuccessDialog(true);
+      });
+  };
+
+
+  const showDialogErrorBox = () => {
+      setShowErrorDialog(false);
+      setTimeout(() => {
+          setShowErrorDialog(true);
+      });
+  };
+
    useEffect(() => {
       setSelectedFileformats(datasetItem.allowedFileFormats);
     }, [datasetItem.allowedFileFormats] );
@@ -93,11 +108,11 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
          const response = await axios.put(`https://opplasting.dev.geonorge.no/api/Dataset/${datasetItem.id}`, datasetForm);
 
          if (response.data) {
-            setShowSuccessDialog(true)
+            setShowSuccessDialogBox();
             // Sett data i state her
          }
       } catch (error) {
-         setShowErrorDialog(true);
+         showDialogErrorBox();
 
          if (error.response?.data) {
             const messages = Object.values(error.response.data).map(value => value.join(', '));
