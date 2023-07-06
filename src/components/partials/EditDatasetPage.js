@@ -26,6 +26,7 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
    const titleInputRef = useRef();
    const metadataUuidInputRef = useRef();
    const contactEmailInputRef = useRef();
+   const contactEmailExtraInputRef = useRef();
    const contactNameInputRef = useRef();
    const ownerOrganizationInputRef = useRef();
    const requiredRoleInputRef = useRef();
@@ -80,6 +81,7 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
          title: titleInputRef.current.value,
          metadataUuid: metadataUuidInputRef.current.value,
          contactEmail: contactEmailInputRef.current.value,
+         contactEmailExtra: contactEmailExtraInputRef.current.value,
          contactName: contactNameInputRef.current.value,
          ownerOrganization: ownerOrganizationInputRef.current.value,
          requiredRole: requiredRoleInputRef.current.value,
@@ -128,6 +130,11 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
                <gn-field-container block="">
                   <gn-label block=""><label htmlFor="epost">E-post</label></gn-label>
                   <gn-input><input defaultValue={datasetItem.contactEmail} ref={contactEmailInputRef} id="epost" />
+                  </gn-input>
+               </gn-field-container>
+               <gn-field-container block="">
+                  <gn-label block=""><label htmlFor="epostExtra">E-post ekstra</label></gn-label>
+                  <gn-input><input defaultValue={datasetItem.contactEmailExtra} ref={contactEmailExtraInputRef} id="epostExtra" />
                   </gn-input>
                </gn-field-container>
                <gn-field-container block="">

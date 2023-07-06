@@ -32,6 +32,7 @@ const NewDatasetForm = (props) => {
    const titleInputRef = useRef();
    const metadataUuidInputRef = useRef();
    const contactEmail = useRef();
+   const contactEmailExtra = useRef();
    const contactName = useRef();
    const ownerOrganization = useRef();
    const requiredRoleInputRef = useRef();
@@ -43,6 +44,7 @@ const NewDatasetForm = (props) => {
          title: titleInputRef.current.value,
          metadataUuid: metadataUuidInputRef.current.value,
          contactEmail: contactEmail.current.value,
+         contactEmailExtra: contactEmailExtra?.current?.value,
          contactName: contactName.current.value,
          ownerOrganization: ownerOrganization.current.value,
          requiredRole: requiredRoleInputRef.current.value,
@@ -79,6 +81,10 @@ const NewDatasetForm = (props) => {
             <gn-field-container block="">
                <gn-label block=""><label htmlFor="epost">E-post</label></gn-label>
                <gn-input><input ref={contactEmail} id="epost" /></gn-input>
+            </gn-field-container>
+            <gn-field-container block="">
+               <gn-label block=""><label htmlFor="epostExtra">E-post ekstra</label></gn-label>
+               <gn-input><input ref={contactEmailExtra} id="epostExtra" /></gn-input>
             </gn-field-container>
             <gn-field-container block="">
                <gn-label block=""><label htmlFor="eier">Eier</label></gn-label>
