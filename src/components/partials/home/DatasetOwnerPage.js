@@ -15,7 +15,7 @@ const DatasetOwnerPage = (props) => {
             <heading-text>
                 <h2 underline="true">Side for datasetteier</h2>
             </heading-text>
-            <p><a href="admin/newDataset">Nytt datasett</a></p> 
+            <p><a href="dataset/new">Nytt datasett</a></p> 
            <OrganisationInfo />
            <DatasetList datasetItems={props.datasetItems} />
        </Fragment>

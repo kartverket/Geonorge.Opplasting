@@ -18,14 +18,23 @@ const FilelistItem = (props) => {
         return day[0] + "." + dateArray[1] + "." + dateArray[0] + " " + time;
     }
 };
-
+ 
   const url = `https://opplasting.dev.geonorge.no/api/Dataset/download-file/${props.file.id}`
   
     return (
           <tr>
             <td><Link to={url}>{props.file.fileName}</Link></td>
             <td>{formatDate(props.file.date)}</td>
-            <td>{props.file.status}</td>
+            <td>
+            <gn-select block="">
+            <select value={props.file.status}>
+              <option value={props.fileStatuses.Submitted}>{props.fileStatuses.Submitted}</option>
+              <option value={props.fileStatuses.InProcess}>{props.fileStatuses.InProcess}</option>
+              <option value={props.fileStatuses.Valid}>{props.fileStatuses.Valid}</option>
+              <option value={props.fileStatuses.Invalid}>{props.fileStatuses.Invalid}</option>
+            </select>
+            </gn-select>
+            </td>
           </tr>
     );
 };

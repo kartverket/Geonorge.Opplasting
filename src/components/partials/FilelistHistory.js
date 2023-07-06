@@ -1,5 +1,6 @@
 // Dependencies
 import React, { Fragment } from "react";
+import { useState,useEffect } from 'react';
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
@@ -8,6 +9,25 @@ import FilelistItem from "./FilelistItem";
 
 
 const FilelistHistory = ({datasetItem}) => {
+
+    const [fileStatuses, setfileStatuses] = useState("");
+
+    useEffect(() => {
+        const url = "https://opplasting.dev.geonorge.no/api/Dataset/file/statuses";
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch(url);
+                const json = await response.json();
+                console.log(json);
+                setfileStatuses(json);
+            } catch (error) {
+                console.log("error", error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     if (!datasetItem.files?.length) {
         return null;
@@ -27,7 +47,7 @@ const FilelistHistory = ({datasetItem}) => {
                 </thead>
                 <tbody>
                 {datasetItem.files.map(file =>     {                
-                    return <FilelistItem key={file.id} file={file} datasetId={datasetItem.id} />
+                    return <FilelistItem key={file.id} file={file} datasetId={datasetItem.id} fileStatuses={fileStatuses} />
                    })} 
                   
                 </tbody>
