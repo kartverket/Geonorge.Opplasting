@@ -69,7 +69,7 @@ const NewDatasetForm = (props) => {
          ownerOrganization: ownerOrganization.current.value,
          requiredRole: requiredRoleInputRef.current.value,
          requireValidFile: requireValidFile,
-         allowedFileFormats : data
+         allowedFileFormats : data.length && data.length !== "" ? data : null
       };
       event.preventDefault();
       try {

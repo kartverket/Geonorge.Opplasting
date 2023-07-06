@@ -101,7 +101,7 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
          ownerOrganization: ownerOrganizationInputRef.current.value,
          requiredRole: requiredRoleInputRef.current.value,
          requireValidFile: requireValidFile,
-         allowedFileFormats : data.length ? data : null
+         allowedFileFormats : data.length && data.length !== "" ? data : null
       };
 
       try {
