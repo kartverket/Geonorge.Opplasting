@@ -123,6 +123,9 @@ const DatasetDetailsPage = ({ datasetItem }) => {
         {
             showIsLoadingBox();
             const formData = new FormData();
+
+            if(data?.selectedFile?.name === undefined )
+                throw new Error('Vennligst velg fil');
     
             formData.append(
                 "file",
