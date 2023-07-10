@@ -10,7 +10,7 @@ import FilelistItem from "./FilelistItem";
 
 const FilelistHistory = ({datasetItem}) => {
 
-    const [fileStatuses, setfileStatuses] = useState("");
+    const [fileStatuses, setfileStatuses] = useState();
 
     useEffect(() => {
         const url = "https://opplasting.dev.geonorge.no/api/Dataset/file/statuses";
@@ -33,7 +33,7 @@ const FilelistHistory = ({datasetItem}) => {
         return null;
     }
 
-    return (
+    return fileStatuses && (
         <Fragment>
         
           <gn-table hoverable="">

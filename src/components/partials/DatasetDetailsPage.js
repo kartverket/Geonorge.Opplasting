@@ -7,10 +7,11 @@ import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-componen
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useState } from 'react';
-import FilelistHistory from "../FilelistHistory";
+import FilelistHistory from "./FilelistHistory";
 
 
 const DatasetDetailsPage = ({ datasetItem }) => {
+    const [data, setData] = useState();
 
     const [showSuccessDialog, setShowSuccessDialog] = useState(false);
     const [showErrorDialog, setShowErrorDialog] = useState(false);
@@ -18,11 +19,23 @@ const DatasetDetailsPage = ({ datasetItem }) => {
     const [showValidationErrorDialog, setShowValidationErrorDialog] = useState(false);
     var requireValidFileSelection = true;
     const [showIsLoading, setShowIsLoading] = useState(false);
+
+    if (!datasetItem) {
+        return (
+            <div>
+                Ingen datasett
+            </div>
+        )
+    }
     
     const breadcrumbs = [
         {
             "name": "Forside",
             "url": "/"
+        },
+        {
+            "name": "Datasett",
+            "url": "/dataset"
         },
         {
             "name": datasetItem.title,
@@ -32,7 +45,6 @@ const DatasetDetailsPage = ({ datasetItem }) => {
     ]
 
 
-    const [data, setData] = useState('');
 
     const onFileChange = (event) => {
 
@@ -124,6 +136,8 @@ const DatasetDetailsPage = ({ datasetItem }) => {
             showIsLoadingBox();
             const formData = new FormData();
 
+            
+
             if(data?.selectedFile?.name === undefined )
                 throw new Error('Vennligst velg fil');
     
@@ -141,6 +155,8 @@ const DatasetDetailsPage = ({ datasetItem }) => {
                 "requireValidFile",
                 requireValidFileSelection
             );
+
+            console.log({formData});
 
             const response = await axios.post("https://opplasting.dev.geonorge.no/api/Dataset/file", formData);
 
