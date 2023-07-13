@@ -1,53 +1,53 @@
+// Dependencies
 import { createBrowserRouter } from "react-router-dom";
 
-// Route components
+// Components
 import Layout from "../components/layout";
-import Dataset from "../components/routes/dataset";
-import DatasetDetails from "../components/routes/datasetDetails";
-import EditDataset from "../components/routes/editDataset";
-import Home from "../components/routes/home";
-import Newdataset from "../components/routes/newDataset";
-import UserPage from "../components/routes/userPage";
+
+// Route components
+import HomeRoute from "../components/routes/HomeRoute";
+import DatasetListRoute from "../components/routes/DatasetListRoute";
+import DatasetDetailsRoute from "../components/routes/DatasetDetailsRoute";
+import DatasetEditRoute from "../components/routes/DatasetEditRoute";
+import DatasetNewRoute from "../components/routes/DatasetNewRoute";
+import NotFoundRoute from "../components/routes/NotFoundRoute";
 
 // Loaders
 import { editDatasetLoader, listDatasetsLoader, newDatasetLoader, showDatasetLoader } from "./loaders";
-import NotFound from "../components/routes/notFound";
 
-
-const getRouter = (role) => {
-    console.log("role in router", role)
+const getRouter = (roles) => {
     return createBrowserRouter([
         {
             element: <Layout />,
             id: "root",
             children: [
                 {
-                    element: <Home />,
+                    element: <HomeRoute />,
                     index: true,
-                    loader: () => listDatasetsLoader(role)
+                    loader: () => listDatasetsLoader(roles)
                 },
                 {
-                    element: <Newdataset />,
+                    element: <DatasetNewRoute />,
                     path: "dataset/new",
                     loader: newDatasetLoader
                 },
                 {
-                    element: <EditDataset />,
+                    element: <DatasetEditRoute />,
                     path: "dataset/:id/edit",
                     loader: editDatasetLoader
                 },
                 {
-                    element: <Dataset />,
+                    element: <DatasetListRoute />,
                     path: "dataset",
+                    loader: () => listDatasetsLoader(roles)
                 },
                 {
-                    element: <DatasetDetails />,
+                    element: <DatasetDetailsRoute />,
                     path: "dataset/:id",
                     loader: showDatasetLoader
                 },
-
                 {
-                    element: <NotFound />,
+                    element: <NotFoundRoute />,
                     path: "*"
                 }
             ]
