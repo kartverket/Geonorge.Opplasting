@@ -5,15 +5,22 @@ const AuthContext = createContext({
 });
 
 export function AuthContextProvider(props) {
-    const [activeRole, setActiveRole] = useState();
+    const [authRoles, setAuthRoles] = useState();
+    const [authOrganizationName, setAuthOrganizationName] = useState();
 
-    function setRole(role) {
-        setActiveRole(role);
+    function setRoles(roles) {
+        setAuthRoles(roles);
+    }
+
+    function setOrganizationName(organizationName) {
+        setAuthOrganizationName(organizationName);
     }
 
     const context = {
-        role: activeRole,
-        setRole
+        roles: authRoles,
+        organizationName: authOrganizationName,
+        setRoles,
+        setOrganizationName
     };
 
     return <AuthContext.Provider value={context}>{props.children}</AuthContext.Provider>;
