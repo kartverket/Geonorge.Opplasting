@@ -15,7 +15,7 @@ const DatasetDetails = () => {
 
     const breadcrumbs = [
         { name: "Geonorge", url: "https://www.geonorge.no/" },
-        { name: "Forside", url: "/" },
+        { name: "Opplastingsklienten", url: "/" },
         { name: "Datasett", url: "/dataset" },
         { name: datasetItem?.title ? datasetItem.title : "", url: datasetItem?.id ? `/dataset/${datasetItem.id}` : "" }
     ];

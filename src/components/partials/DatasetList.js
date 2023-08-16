@@ -3,7 +3,7 @@ import React from "react";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
-import { ContentContainer, HeadingText, breadcrumbList } from "@kartverket/geonorge-web-components";
+import { GnTable } from "@kartverket/geonorge-web-components";
 
 import DatasetListItem from "../partials/DatasetListItem";
 

@@ -19,12 +19,12 @@ export async function fetchDatasetItem(id) {
         });
 }
 
-export async function fetchAllowedFileformats() {
+export async function fetchAvailableFileformats() {
     return fetch("https://opplasting.dev.geonorge.no/api/Dataset/fileformats")
         .then((response) => {
             return response.json();
         })
-        .then((allowedFileformats) => {
-            return { allowedFileformats };
+        .then((availableFileformats) => {
+            return { availableFileformats };
         });
 }

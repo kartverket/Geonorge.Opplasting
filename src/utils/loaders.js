@@ -1,5 +1,5 @@
 // Utils
-import { fetchAllowedFileformats, fetchDatasetItem, fetchDatasetItems } from "./apiUtils";
+import { fetchAvailableFileformats, fetchDatasetItem, fetchDatasetItems } from "./apiUtils";
 
 export async function listDatasetsLoader(roles) {
     const acceptedRoles = ["nd.metadata_admin", "nd.gjenbruk"];
@@ -17,18 +17,20 @@ export async function showDatasetLoader({ params }) {
 
 export async function editDatasetLoader({ params }) {
     const datasetItem = fetchDatasetItem(params.id);
-    const allowedFileformat = fetchAllowedFileformats();
-    const datasetContent = await Promise.all([datasetItem, allowedFileformat]);
+    const availableFileformat = fetchAvailableFileformats();
+    const datasetContent = await Promise.all([datasetItem, availableFileformat]);
     let fetchItems = {};
     datasetContent.forEach((fetchItem) => {
-        fetchItems = {
-            ...fetchItems,
-            ...fetchItem
-        };
+        if (!!fetchItem.availableFileformats) {
+            fetchItems.availableFileformats = fetchItem.availableFileformats;
+        }
+        if (!!fetchItem.metadataUuid) {
+            fetchItems.datasetItem = fetchItem;
+        }
     });
     return fetchItems;
 }
 
 export async function newDatasetLoader() {
-    return await fetchAllowedFileformats();
+    return await fetchAvailableFileformats();
 }

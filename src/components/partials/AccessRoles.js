@@ -12,6 +12,7 @@ const AccessRoles = () => {
 
     const handleAdminButtonClick = () => {
         setRoles(["nd.metadata_admin"]);
+        setOrganizationName(null);
     };
 
     const handleDatasetOwnerButtonClick = () => {
@@ -21,6 +22,7 @@ const AccessRoles = () => {
 
     const handleUploaderButtonClick = () => {
         setRoles(["nd.gjenbruk"]);
+        setOrganizationName(null);
     };
 
     return (
@@ -41,18 +43,16 @@ const AccessRoles = () => {
                 <gn-button color="primary">
                     <button onClick={handleUploaderButtonClick}>Brukeropplaster</button>
                 </gn-button>
-                Bruker:
-                <ul>
-                    <li>Organisasjon: {organizationName}</li>
-                    <li>
-                        Roller:
-                        <ul>
-                            {roles?.length && roles.map((role) => (
-                                <li>{role}</li>
-                            ))}
-                        </ul>
-                    </li>
-                </ul>
+                <div>
+                    Bruker:
+                    <ul>
+                        <li>Organisasjon: {organizationName}</li>
+                        <li>
+                            Roller:
+                            <ul>{roles?.length && roles.map((role) => <li key="role">{role}</li>)}</ul>
+                        </li>
+                    </ul>
+                </div>
                 <gn-button color="primary">
                     <button
                         onClick={() => {
@@ -63,7 +63,6 @@ const AccessRoles = () => {
                         Logg ut
                     </button>
                 </gn-button>
-               
             </gn-field-container>
         </Fragment>
     );

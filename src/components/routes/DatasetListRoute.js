@@ -13,14 +13,9 @@ const Dataset = () => {
     const loaderData = useLoaderData();
 
     const breadcrumbs = [
-        {
-            name: "Forside",
-            url: "/"
-        },
-        {
-            name: "Datasett",
-            url: "/dataset"
-        }
+        { name: "Geonorge", url: "https://www.geonorge.no/" },
+        { name: "Opplastingsklienten", url: "/" },
+        { name: "Datasett", url: "/dataset" }
     ];
 
     return (

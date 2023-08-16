@@ -1,25 +1,16 @@
 // Dependencies
 import React, { Fragment, useEffect , useRef, useState } from "react";
+import axios from 'axios';
+import { Link } from "react-router-dom";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
 import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
-import axios from 'axios';
-import { Link } from "react-router-dom";
+
+// Components
 import AllowedFileformats from "./AllowedFileformats";
 
-const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
-   const breadcrumbs = [
-      {
-         "name": "Forside",
-         "url": "/"
-      },
-      {
-         "name": datasetItem.title,
-         "url": `/dataset/${datasetItem.id}`
-      }
-
-   ]
+const EditDatasetPage = ({ datasetItem, availableFileformats }) => {
    const [showSuccessDialog, setShowSuccessDialog] = useState(false);
    const [showErrorDialog, setShowErrorDialog] = useState(false);
    const [errorMessage, setErrorMessage] = useState();
@@ -53,7 +44,6 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
 
    const setSelectedFileformats = (formatsSelected) => 
    {
-      console.log(formatsSelected);
       var formats = [];
       if(formatsSelected.length > 0)
       {
@@ -68,7 +58,6 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
    const [data, setData] = useState();
 
    const handleFileFormatChange = (event) => {
-      console.log(data);
       var formats = data !== undefined ? data.slice() : '';
       
       if(formats === "")
@@ -123,10 +112,13 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
       }
    };
 
+   if (!datasetItem) {
+      return "Fant ingen datasett"
+   }
+
 
    return (
       <Fragment>
-            <breadcrumb-list id="breadcrumb-list" breadcrumbs={JSON.stringify(breadcrumbs)}></breadcrumb-list>
             <h4>{datasetItem.title} </h4>
             <body-text>Fyll inn feltene for å opprette et nytt datasett.</body-text>
             <form onSubmit={handleSubmit}>
@@ -161,7 +153,7 @@ const EditDatasetPage = ({ datasetItem, allowedFileformats }) => {
                   <gn-input><input defaultValue={datasetItem.requiredRole} ref={requiredRoleInputRef} id="requiredRole" /></gn-input>
                </gn-field-container>
                <gn-field-container>
-                  <AllowedFileformats allowedFileformats={allowedFileformats} datasetAllowedFileFormats={datasetItem.allowedFileFormats} handleFileFormatChange={handleFileFormatChange} />
+                  <AllowedFileformats availableFileformats={availableFileformats} allowedFileFormats={datasetItem.allowedFileFormats} handleFileFormatChange={handleFileFormatChange} />
                </gn-field-container>
                <gn-field-container block="">
                <input value="true" type="checkbox" defaultChecked={datasetItem.requireValidFile} ref={requireValidFileInputRef} id="requireValidFile" />
