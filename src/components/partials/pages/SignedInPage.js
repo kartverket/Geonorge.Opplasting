@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { GnButton } from "@kartverket/geonorge-web-components";
 
 // Components
-import OrganisationInfo from "../OrganisationInfo";
 import DatasetList from "../DatasetList";
 
 // Store
@@ -16,18 +15,15 @@ import AuthContext from "../../../store/AuthContext";
 
 const SignedInPage = () => {
     const loaderData = useLoaderData();
-    const { roles } = useContext(AuthContext);
-
-    const canAddDataset = roles.includes("nd.metadata_admin");
+    const { canAddDataset } = useContext(AuthContext);
 
     return (
         <Fragment>
-            {canAddDataset && (
+            {canAddDataset() && (
                 <gn-button>
                     <Link to="/dataset/new">Nytt datasett</Link>
                 </gn-button>
             )}
-            <OrganisationInfo />
             <DatasetList datasetItems={loaderData?.datasetItems} />
         </Fragment>
     );

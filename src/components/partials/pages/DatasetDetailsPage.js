@@ -1,12 +1,17 @@
 // Dependencies
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
-import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
+import { ContentContainer, GnButton, HeadingText } from "@kartverket/geonorge-web-components";
+
+// Components
 import FilelistHistory from "../FilelistHistory";
+import AuthContext from "../../../store/AuthContext";
+
+// Store
 
 const DatasetDetailsPage = ({ datasetItem }) => {
     const [data, setData] = useState();
@@ -17,6 +22,8 @@ const DatasetDetailsPage = ({ datasetItem }) => {
     const [showValidationErrorDialog, setShowValidationErrorDialog] = useState(false);
     var requireValidFileSelection = true;
     const [showIsLoading, setShowIsLoading] = useState(false);
+
+    const { canEditDataset, canUploadDatasetFile } = useContext(AuthContext);
 
     if (!datasetItem) {
         return <div>Ingen datasett</div>;
@@ -107,8 +114,6 @@ const DatasetDetailsPage = ({ datasetItem }) => {
 
             formData.append("requireValidFile", requireValidFileSelection);
 
-            console.log({ formData });
-
             const response = await axios.post("https://opplasting.dev.geonorge.no/api/Dataset/file", formData);
 
             if (response.data) {
@@ -132,7 +137,6 @@ const DatasetDetailsPage = ({ datasetItem }) => {
         }
     };
 
-    console.log({ datasetItem });
     return datasetItem && Object.keys(datasetItem)?.length ? (
         <Fragment>
             <heading-text>
@@ -143,20 +147,32 @@ const DatasetDetailsPage = ({ datasetItem }) => {
                 <p>{datasetItem.contactEmail}</p>
                 <p>{datasetItem.ownerOrganization}</p>
                 <p>{datasetItem.requiredRole}</p>
-                <p>
-                    <Link to="edit">Redigere datasettet</Link>{" "}
-                </p>
+                {canEditDataset(datasetItem) && (
+                    <gn-button>
+                        <Link to="edit">Redigere datasettet</Link>
+                    </gn-button>
+                )}
             </gn-bodytext>
 
-            <label htmlFor="fil" className="drop-container">
-                <input type="file" id="fil" accept={getAllowedFileFormats()} required onChange={onFileChange}></input>
-                <span>({getAllowedFileFormats()})</span>
-            </label>
-            <div className="upload-div">
-                <gn-button color="primary">
-                    <button onClick={handleUploadClick}>Last opp fil til gjeldende dataset</button>
-                </gn-button>
-            </div>
+            {canUploadDatasetFile(datasetItem) && (
+                <div>
+                    <label htmlFor="fil" className="drop-container">
+                        <input
+                            type="file"
+                            id="fil"
+                            accept={getAllowedFileFormats()}
+                            required
+                            onChange={onFileChange}
+                        ></input>
+                        <span>({getAllowedFileFormats()})</span>
+                    </label>
+                    <div className="upload-div">
+                        <gn-button color="primary">
+                            <button onClick={handleUploadClick}>Last opp fil til gjeldende dataset</button>
+                        </gn-button>
+                    </div>
+                </div>
+            )}
 
             <heading-text>
                 <h3>Tidligere opplastede filer</h3>

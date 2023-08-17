@@ -5,6 +5,7 @@ import React from "react";
 // eslint-disable-next-line no-unused-vars
 import { GnTable } from "@kartverket/geonorge-web-components";
 
+// Components
 import DatasetListItem from "../partials/DatasetListItem";
 
 const DatasetList = ({ datasetItems }) => {

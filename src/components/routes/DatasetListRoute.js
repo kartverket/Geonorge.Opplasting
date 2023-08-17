@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
-import { ContentContainer, HeadingText } from "@kartverket/geonorge-web-components";
+import { HeadingText } from "@kartverket/geonorge-web-components";
 
 // Components
 import DatasetList from "../partials/DatasetList";

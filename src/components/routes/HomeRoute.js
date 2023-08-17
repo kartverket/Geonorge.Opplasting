@@ -28,10 +28,10 @@ const Home = () => {
 
     return (
         <Fragment>
+            <breadcrumb-list id="breadcrumb-list" breadcrumbs={JSON.stringify(breadcrumbs)}></breadcrumb-list>
             <heading-text>
                 <h1 underline="true">Opplastingsklienten </h1>
             </heading-text>
-            <breadcrumb-list id="breadcrumb-list" breadcrumbs={JSON.stringify(breadcrumbs)}></breadcrumb-list>
             {roles?.length ? renderSignedInContent() : renderSignedOutContent()}
         </Fragment>
     );

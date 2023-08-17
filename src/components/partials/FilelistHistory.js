@@ -1,15 +1,15 @@
 // Dependencies
-import React, { Fragment } from "react";
-import { useState,useEffect } from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
-import { ContentContainer, HeadingText, breadcrumbList } from "@kartverket/geonorge-web-components";
+import { GnTable } from "@kartverket/geonorge-web-components";
+
+// Components
 import FilelistItem from "./FilelistItem";
 
-
-const FilelistHistory = ({datasetItem}) => {
-
+const FilelistHistory = ({ datasetItem }) => {
     const [fileStatuses, setfileStatuses] = useState();
 
     useEffect(() => {
@@ -33,27 +33,32 @@ const FilelistHistory = ({datasetItem}) => {
         return null;
     }
 
-    return fileStatuses && (
-        <Fragment>
-        
-          <gn-table hoverable="">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Filnavn</th>
-                        <th>Dato</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {datasetItem.files.map(file =>     {                
-                    return <FilelistItem key={file.id} file={file} datasetId={datasetItem.id} fileStatuses={fileStatuses} />
-                   })} 
-                  
-                </tbody>
-            </table>
-            </gn-table>  
-            </Fragment>
+    return (
+        fileStatuses && (
+            <gn-table hoverable="">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Filnavn</th>
+                            <th>Dato</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {datasetItem.files.map((file) => {
+                            return (
+                                <FilelistItem
+                                    key={file.id}
+                                    file={file}
+                                    datasetItem={datasetItem}
+                                    fileStatuses={fileStatuses}
+                                />
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </gn-table>
+        )
     );
 };
 

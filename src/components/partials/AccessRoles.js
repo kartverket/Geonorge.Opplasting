@@ -21,7 +21,7 @@ const AccessRoles = () => {
     };
 
     const handleUploaderButtonClick = () => {
-        setRoles(["nd.gjenbruk"]);
+        setRoles(["nd.gjenbruk", "nd.admenhet", "nd.dag"]);
         setOrganizationName(null);
     };
 

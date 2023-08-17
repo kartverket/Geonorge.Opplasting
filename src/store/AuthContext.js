@@ -16,11 +16,61 @@ export function AuthContextProvider(props) {
         setAuthOrganizationName(organizationName);
     }
 
+    function canAddDataset() {
+        return !!authRoles.includes("nd.metadata_admin");
+    }
+
+    function canEditDataset(datasettItem) {
+        if (!!authRoles?.length && authRoles.includes("nd.metadata_admin")) {
+            return true;
+        } else if (
+            !!authRoles?.length &&
+            authRoles.includes("nd.gjenbruk") &&
+            authOrganizationName === datasettItem.ownerOrganization
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function canUploadDatasetFile(datasettItem) {
+        if (!!authRoles?.length && authRoles.includes("nd.metadata_admin")) {
+            return true;
+        } else if (
+            !!authRoles?.length &&
+            authRoles.includes("nd.gjenbruk") &&
+            authRoles.includes(datasettItem.requiredRole)
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function canEditDatasetStatus(datasettItem) {
+        if (!!authRoles?.length && authRoles.includes("nd.metadata_admin")) {
+            return true;
+        } else if (
+            !!authRoles?.length &&
+            authRoles.includes("nd.gjenbruk") &&
+            authOrganizationName === datasettItem.ownerOrganization
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     const context = {
         roles: authRoles,
         organizationName: authOrganizationName,
         setRoles,
-        setOrganizationName
+        setOrganizationName,
+        canAddDataset,
+        canEditDataset,
+        canUploadDatasetFile,
+        canEditDatasetStatus
     };
 
     return <AuthContext.Provider value={context}>{props.children}</AuthContext.Provider>;
