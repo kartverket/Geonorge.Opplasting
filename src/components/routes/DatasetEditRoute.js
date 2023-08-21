@@ -4,10 +4,13 @@ import { useLoaderData } from "react-router";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
-import { BreadcrumbList, HeadingText } from "@kartverket/geonorge-web-components";
+import { HeadingText } from "@kartverket/geonorge-web-components";
 
 // Components
 import EditDatasetPage from "../partials/EditDatasetPage";
+
+// Utils
+import { renderBreadcrumbs } from "../../utils/breadcrumbs";
 
 const EditDataset = () => {
     const loaderData = useLoaderData();
@@ -29,7 +32,7 @@ const EditDataset = () => {
 
     return (
         <Fragment>
-            <breadcrumb-list id="breadcrumb-list" breadcrumbs={JSON.stringify(breadcrumbs)}></breadcrumb-list>
+            {renderBreadcrumbs(breadcrumbs)}
             <heading-text>
                 <h1 underline="true">Rediger datasett</h1>
             </heading-text>

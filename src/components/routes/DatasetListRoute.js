@@ -9,6 +9,9 @@ import { HeadingText } from "@kartverket/geonorge-web-components";
 // Components
 import DatasetList from "../partials/DatasetList";
 
+// Utils
+import { renderBreadcrumbs } from "../../utils/breadcrumbs";
+
 const Dataset = () => {
     const loaderData = useLoaderData();
 
@@ -20,7 +23,7 @@ const Dataset = () => {
 
     return (
         <Fragment>
-            <breadcrumb-list id="breadcrumb-list" breadcrumbs={JSON.stringify(breadcrumbs)}></breadcrumb-list>
+            {renderBreadcrumbs(breadcrumbs)}
             <heading-text>
                 <h1 underline="true">Datasett </h1>
             </heading-text>

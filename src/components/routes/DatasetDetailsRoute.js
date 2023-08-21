@@ -2,12 +2,11 @@
 import React, { Fragment } from "react";
 import { useLoaderData } from "react-router";
 
-// Geonorge WebComponents
-// eslint-disable-next-line no-unused-vars
-import { BreadcrumbList } from "@kartverket/geonorge-web-components";
-
 // Components
 import DatasetDetailsPage from "../partials/pages/DatasetDetailsPage";
+
+// Utils
+import { renderBreadcrumbs } from "../../utils/breadcrumbs";
 
 const DatasetDetails = () => {
     const loaderData = useLoaderData();
@@ -22,7 +21,7 @@ const DatasetDetails = () => {
 
     return (
         <Fragment>
-            <breadcrumb-list id="breadcrumb-list" breadcrumbs={JSON.stringify(breadcrumbs)}></breadcrumb-list>
+            {renderBreadcrumbs(breadcrumbs)}
             <DatasetDetailsPage datasetItem={datasetItem} />
         </Fragment>
     );
