@@ -182,15 +182,19 @@ const EditDatasetPage = ({ datasetItem, availableFileformats }) => {
                         handleFileFormatChange={handleFileFormatChange}
                     />
                 </gn-field-container>
-                <gn-field-container block="">
-                    <input
-                        value="true"
-                        type="checkbox"
-                        defaultChecked={datasetItem.requireValidFile}
-                        ref={requireValidFileInputRef}
-                        id="requireValidFile"
-                    />
-                    <label htmlFor="requireValidFile">Kreve at fil må være gyldig for å få legge inn</label>
+                <gn-field-container block>
+                    <gn-input>
+                        <input
+                            value="true"
+                            type="checkbox"
+                            defaultChecked={datasetItem.requireValidFile}
+                            ref={requireValidFileInputRef}
+                            id="requireValidFile"
+                        />
+                    </gn-input>
+                    <gn-label>
+                        <label htmlFor="requireValidFile">Kreve at fil må være gyldig for å få legge inn</label>
+                    </gn-label>
                 </gn-field-container>
                 <Link to={`/dataset/${datasetItem.id}`}>Avbryt</Link>
                 <gn-button color="primary">

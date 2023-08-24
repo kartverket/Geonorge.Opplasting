@@ -1,9 +1,9 @@
 // Dependencies
-import React, { Fragment } from "react";
+import React from "react";
 
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
-import { GnLabel } from "@kartverket/geonorge-web-components";
+import { GnFieldContainer, GnInput, GnLabel } from "@kartverket/geonorge-web-components";
 
 const AllowedFileformatItem = (props, { handleFileFormatChange }) => {
     const isChecked = (format, formatSelected) => {
@@ -17,21 +17,23 @@ const AllowedFileformatItem = (props, { handleFileFormatChange }) => {
     };
 
     return (
-        <Fragment>
-            <gn-label block="">
+        <gn-field-container block>
+            <gn-input>
+                <input
+                    id={props.fileformat.extension}
+                    name="allowedformats"
+                    type="checkbox"
+                    defaultChecked={isChecked(props.fileformat.extension, props.allowedFileFormats)}
+                    value={props.fileformat.extension}
+                    onClick={(e) => props.handleFileFormatChange(e)}
+                />
+            </gn-input>
+            <gn-label>
                 <label htmlFor={props.fileformat.extension}>
-                    <input
-                        id={props.fileformat.extension}
-                        name="allowedformats"
-                        type="checkbox"
-                        defaultChecked={isChecked(props.fileformat.extension, props.allowedFileFormats)}
-                        value={props.fileformat.extension}
-                        onClick={(e) => props.handleFileFormatChange(e)}
-                    />{" "}
                     {props.fileformat.name} (.{props.fileformat.extension})
                 </label>
             </gn-label>
-        </Fragment>
+        </gn-field-container>
     );
 };
 
