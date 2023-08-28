@@ -18,7 +18,7 @@ import {
 // Components
 import AllowedFileformats from "./AllowedFileformats";
 
-const NewDatasetForm = (props) => {
+const NewDatasetForm = ({ availableFileformats }) => {
     const [data, setData] = useState("");
     const [showSuccessDialog, setShowSuccessDialog] = useState(false);
     const [showErrorDialog, setShowErrorDialog] = useState(false);
@@ -96,69 +96,75 @@ const NewDatasetForm = (props) => {
         <Fragment>
             <body-text>Fyll inn feltene for å opprette et nytt datasett.</body-text>
             <form onSubmit={handleSubmit}>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="tittel">Tittel</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="400px">
                         <input ref={titleInputRef} id="tittel" />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="metadataUuid">Metadata uuid</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="340px">
                         <input ref={metadataUuidInputRef} id="metadataUuid" />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="kontaktperson">Kontaktperson</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="250px">
                         <input ref={contactName} id="kontaktperson" />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="epost">E-post</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="300px">
                         <input ref={contactEmail} id="epost" />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="epostExtra">E-post ekstra</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="300px">
                         <input ref={contactEmailExtra} id="epostExtra" />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="eier">Eier</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="250px">
                         <input ref={ownerOrganization} id="eier" />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="requiredRole">Påkrevd rolle</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="250px">
                         <input ref={requiredRoleInputRef} id="requiredRole" />
                     </gn-input>
                 </gn-field-container>
-                <AllowedFileformats
-                    allowedFileformats={props.allowedFileformats}
-                    handleFileFormatChange={handleFileFormatChange}
-                />
-                <gn-field-container block="">
-                    <input value="true" type="checkbox" ref={requireValidFileInputRef} id="requireValidFile" />
-                    <label htmlFor="requireValidFile">Kreve at fil må være gyldig for å få legge inn</label>
+                <gn-field-container>
+                    <AllowedFileformats
+                        availableFileformats={availableFileformats}
+                        handleFileFormatChange={handleFileFormatChange}
+                    />
+                </gn-field-container>
+                <gn-field-container block>
+                    <gn-input>
+                        <input value="true" type="checkbox" ref={requireValidFileInputRef} id="requireValidFile" />
+                    </gn-input>
+                    <gn-label>
+                        <label htmlFor="requireValidFile">Kreve at fil må være gyldig for å få legge inn</label>
+                    </gn-label>
                 </gn-field-container>
                 <gn-button color="primary">
                     <button onClick={handleSubmit}>Opprett nytt datasett</button>

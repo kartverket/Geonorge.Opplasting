@@ -119,7 +119,7 @@ const EditDatasetPage = ({ datasetItem, availableFileformats }) => {
                     <gn-label block>
                         <label htmlFor="tittel">Tittel</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="400px">
                         <input defaultValue={datasetItem.title} ref={titleInputRef} id="tittel" />
                     </gn-input>
                 </gn-field-container>
@@ -127,31 +127,31 @@ const EditDatasetPage = ({ datasetItem, availableFileformats }) => {
                     <gn-label block>
                         <label htmlFor="metadataUuid">Metadata uuid</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="340px">
                         <input defaultValue={datasetItem.metadataUuid} ref={metadataUuidInputRef} id="metadataUuid" />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="kontaktperson">Kontaktperson</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="250px">
                         <input defaultValue={datasetItem.contactName} ref={contactNameInputRef} id="kontaktperson" />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="epost">E-post</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="300px">
                         <input defaultValue={datasetItem.contactEmail} ref={contactEmailInputRef} id="epost" />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="epostExtra">E-post ekstra</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="300px">
                         <input
                             defaultValue={datasetItem.contactEmailExtra}
                             ref={contactEmailExtraInputRef}
@@ -159,19 +159,19 @@ const EditDatasetPage = ({ datasetItem, availableFileformats }) => {
                         />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="eier">Eier</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="250px">
                         <input defaultValue={datasetItem.ownerOrganization} ref={ownerOrganizationInputRef} id="eier" />
                     </gn-input>
                 </gn-field-container>
-                <gn-field-container block="">
-                    <gn-label block="">
+                <gn-field-container block>
+                    <gn-label block>
                         <label htmlFor="requiredRole">Påkrevd rolle</label>
                     </gn-label>
-                    <gn-input>
+                    <gn-input width="250px">
                         <input defaultValue={datasetItem.requiredRole} ref={requiredRoleInputRef} id="requiredRole" />
                     </gn-input>
                 </gn-field-container>
@@ -196,7 +196,9 @@ const EditDatasetPage = ({ datasetItem, availableFileformats }) => {
                         <label htmlFor="requireValidFile">Kreve at fil må være gyldig for å få legge inn</label>
                     </gn-label>
                 </gn-field-container>
-                <Link to={`/dataset/${datasetItem.id}`}>Avbryt</Link>
+                <gn-button>
+                    <Link to={`/dataset/${datasetItem.id}`}>Avbryt</Link>
+                </gn-button>
                 <gn-button color="primary">
                     <button onClick={handleSubmit}>Lagre</button>
                 </gn-button>

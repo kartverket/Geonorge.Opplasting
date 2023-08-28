@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 import { RouterProvider } from "react-router-dom";
 
-// eslint-disable-next-line no-unused-vars
-import { ContentContainer } from "@kartverket/geonorge-web-components";
-
 // Utils
 import getRouter from "./utils/router";
 
@@ -16,9 +13,7 @@ function Router() {
     const { roles } = useContext(AuthContext);
     return (
         <div className={style.app}>
-            <content-container>
-                <RouterProvider router={getRouter(roles)} />
-            </content-container>
+            <RouterProvider router={getRouter(roles)} />
         </div>
     );
 }

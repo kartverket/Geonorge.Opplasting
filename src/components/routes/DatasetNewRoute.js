@@ -11,7 +11,8 @@ import NewDatasetForm from "../partials/NewDatasetForm";
 import { renderBreadcrumbs } from "../../utils/breadcrumbs";
 
 const Newdataset = () => {
-    const { allowedFileformats } = useLoaderData();
+    const loaderData = useLoaderData();
+    const availableFileformats = loaderData?.availableFileformats;
 
     const breadcrumbs = [
         { name: "Geonorge", url: "https://www.geonorge.no/" },
@@ -26,7 +27,7 @@ const Newdataset = () => {
             <heading-text>
                 <h1 underline="true">Skjema for dataset</h1>
             </heading-text>
-            <NewDatasetForm allowedFileformats={allowedFileformats} />
+            <NewDatasetForm availableFileformats={availableFileformats} />
         </Fragment>
     );
 };
