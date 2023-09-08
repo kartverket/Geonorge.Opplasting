@@ -2,12 +2,11 @@
 import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 
-// Components
 // Geonorge WebComponents
 // eslint-disable-next-line no-unused-vars
 import { ContentContainer, MainNavigation, GeonorgeFooter } from "@kartverket/geonorge-web-components";
 
-const Layout = (props) => {
+const Layout = () => {
     return (
         <Fragment>
             <main-navigation environment="dev"></main-navigation>

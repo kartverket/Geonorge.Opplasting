@@ -112,8 +112,6 @@ const EditDatasetPage = ({ datasetItem, availableFileformats }) => {
 
     return (
         <Fragment>
-            <h4>{datasetItem.title} </h4>
-            <body-text>Fyll inn feltene for å opprette et nytt datasett.</body-text>
             <form onSubmit={handleSubmit}>
                 <gn-field-container block>
                     <gn-label block>
