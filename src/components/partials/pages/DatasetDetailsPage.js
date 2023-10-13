@@ -128,8 +128,11 @@ const DatasetDetailsPage = ({ datasetItem }) => {
                 setErrorMessage(messages);
                 hideDialogErrorBox();
                 showValidationDialogError();
-            } else if (error.response?.data) {
+            } else if (error.response?.data?.title) {
                 const messages = error.response?.data?.title;
+                setErrorMessage(messages);
+            } else if (error.response?.data) {
+                const messages = error.response?.data;
                 setErrorMessage(messages);
             } else {
                 setErrorMessage(error.message);
