@@ -1,0 +1,38 @@
+# nonk8s
+apiVersion: "backstage.io/v1alpha1"
+kind: "Component"
+metadata:
+  name: "Geonorge.Opplasting"
+  tags:
+  - "public"
+spec:
+  type: "website"
+  lifecycle: "production"
+  owner: "datadeling_og_distribusjon"
+  system: "geonorge"
+---
+apiVersion: "backstage.io/v1alpha1"
+kind: "Group"
+metadata:
+  name: "security_champion_Geonorge.Opplasting"
+  title: "Security Champion Geonorge.Opplasting"
+spec:
+  type: "security_champion"
+  parent: "land_security_champions"
+  members:
+  - "dagolav"
+  children:
+  - "resource:Geonorge.Opplasting"
+---
+apiVersion: "backstage.io/v1alpha1"
+kind: "Resource"
+metadata:
+  name: "Geonorge.Opplasting"
+  links:
+  - url: "https://github.com/kartverket/Geonorge.Opplasting"
+    title: "Geonorge.Opplasting på GitHub"
+spec:
+  type: "repo"
+  owner: "security_champion_Geonorge.Opplasting"
+  dependencyOf:
+  - "component:Geonorge.Opplasting"
